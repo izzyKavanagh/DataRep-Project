@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppContent from './components/AppContent';
 import NavigationBar from './components/navbar.js';
+import Create from './components/Create.js';
+import Read from './components/Read.js';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path="/home" element={<AppContent />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/read" element={<Read />} />
       </Routes>
     </Router>
   );
