@@ -1,15 +1,22 @@
 import Modules from "./GradeTracker";
-//reusable component 'Read'
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-//arrow 'Read' function that returns json "movies" content when called 
 const Read = () => {
-  //json content: array of movie objects with Title, Year, imdbID, Type, Poster
-  const data = [
-    {
-      "Title": "Module Title",
-      "mID": "g00"
-    }
-  ];
+
+  const [modules, setModules] = useState([]);
+
+  useEffect(() => {
+    
+    axios.get('http://localhost:4000/api/modules')
+      .then((response) => {
+        console.log(response.data);
+        setModules(response.data.modules);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   return ( //returns h3 message and displays content
     <div>
