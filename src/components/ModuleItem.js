@@ -1,7 +1,12 @@
 //import bootstrap components for card formating 
 import Card from 'react-bootstrap/Card';
+import { useEffect } from 'react';
 
 const ModuleItem = (props) => {
+    useEffect(() => {
+        console.log("Module Item:", props.mymodule);
+      }, [props.mymodule]); // Only run this effect when the mymovie prop changes
+
     return (
         <div>
             {/* Bootstrap Card component to display movie information */}
