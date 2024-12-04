@@ -22,7 +22,7 @@ const Read = () => {
     <div>
         <h3>Read component</h3>
         {/* displays Movies component with 'data' array passed as 'myMovies' prop */}
-        <Modules myModules={data}/> 
+        <Modules myModules={modules}/> 
         {/* displays footer content */}
     </div>
   );
