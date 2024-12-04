@@ -6,7 +6,7 @@ const Modules = (props) => {
     return props.myModules.map( //iterate over every object in myMovies array using .map() function
         (module)=>{
             //each object in myMovies array is passed to MovieItem
-            return <ModuleItem mymodule={module} key={module.mID}/> //passes object and unique key (imdbID)
+            return <ModuleItem mymodule={module} key={module._id}/> //passes object and unique key (imdbID)
         }
     )
   };

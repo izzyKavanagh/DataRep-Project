@@ -12,7 +12,7 @@ const ModuleItem = (props) => {
             {/* Bootstrap Card component to display movie information */}
             <Card>
                 {/* Card Header displays movie title */}
-                <Card.Header>{props.mymodule.Title}</Card.Header>
+                <Card.Header>{props.mymodule.title}</Card.Header>
                 {/* Card Body contains movie information */} 
                 <Card.Body>
                     {/* Blockquote used to add movie poster and year */}
