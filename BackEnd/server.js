@@ -27,6 +27,17 @@ const moduleSchema = new mongoose.Schema({
  
 const moduleModel = new mongoose.model('Module', moduleSchema);
 
+const mongoose = require('mongoose');
+
+const timetableSchema = new mongoose.Schema({
+  subject: String,
+  date: String,
+  startTime: String,
+  endTime: String,
+});
+
+const Timetable = mongoose.model('Timetable', timetableSchema);
+
 app.get('/api/modules', async(req, res) => {
     const modules = await moduleModel.find({});
     res.json({modules});
