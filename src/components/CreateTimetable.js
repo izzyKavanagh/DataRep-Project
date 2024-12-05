@@ -7,16 +7,15 @@ const Timetable = () => {
     const [subject, setSubject] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [timetable, setTimetable] = useState([]);
-
 
     const handleAddTimetable = (e) => {
         e.preventDefault();
-        const newEntry = { subject, startTime, endTime };
+        const timetable = { subject, startTime, endTime };
+    
+        axios.post('http://localhost:4000/api/timetables', timetable)
+        .then((res) => console.log(res.data)) // Log success response
+        .catch((err) => console.log(err.data)); // Log error response if request fails
     }
-    axios.post('http://localhost:4000/api/timetables', newEntry)
-    .then((res) => console.log(res.data)) // Log success response
-    .catch((err) => console.log(err.data)); // Log error response if request fails
 
     return (
         <div>

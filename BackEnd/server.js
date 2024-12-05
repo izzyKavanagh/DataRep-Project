@@ -29,7 +29,6 @@ const moduleModel = new mongoose.model('Module', moduleSchema);
 
 const timetableSchema = new mongoose.Schema({
   subject: String,
-  date: String,
   startTime: String,
   endTime: String,
 });
