@@ -27,8 +27,6 @@ const moduleSchema = new mongoose.Schema({
  
 const moduleModel = new mongoose.model('Module', moduleSchema);
 
-const mongoose = require('mongoose');
-
 const timetableSchema = new mongoose.Schema({
   subject: String,
   date: String,
@@ -36,7 +34,7 @@ const timetableSchema = new mongoose.Schema({
   endTime: String,
 });
 
-const Timetable = mongoose.model('Timetable', timetableSchema);
+const TimetableModel = mongoose.model('Timetable', timetableSchema);
 
 app.get('/api/modules', async(req, res) => {
     const modules = await moduleModel.find({});
@@ -48,9 +46,9 @@ app.get('/api/modules/:id', async (req, res) => {
     const module = await moduleModel.findById(req.params.id);
     console.log(module);
     res.send(module); // Send the movie details as a response
-  });
+});
 
-  app.post('/api/modules', async(req,res)=>{
+app.post('/api/modules', async(req,res)=>{
     console.log(req.body) // Log the title from the request body to the console
 
     // Extract movie details from the request body
@@ -63,6 +61,33 @@ app.get('/api/modules/:id', async (req, res) => {
 
     // Respond with a success message and the created movie
     res.status(201).json({ message: 'Module created successfully', module: newModule }); // Send a confirmation response to the client
+})
+
+app.get('/api/timetables', async(req, res) => {
+    const timetables = await TimetableModel.find({});
+    res.json({timetables});
+});
+
+app.get('/api/timetables/:id', async (req, res) => {
+    // Fetch a module by its ID from the database
+    const timetable = await TimetableModel.findById(req.params.id);
+    console.log(timetable);
+    res.send(timetable); // Send the movie details as a response
+});
+
+app.post('/api/timetables', async(req,res)=>{
+    console.log(req.body) // Log the title from the request body to the console
+
+    // Extract movie details from the request body
+    const { subject, startTime, endTime } = req.body;
+
+    // Create a new movie document using the extracted details
+    const newTimetable = new TimetableModel({ subject, startTime, endTime });
+    // Save the new movie to the database
+    await newTimetable.save();
+
+    // Respond with a success message and the created movie
+    res.status(201).json({ message: 'Timetable created successfully', timetable: newTimetable }); // Send a confirmation response to the client
 })
 
 app.listen(port, () => {
