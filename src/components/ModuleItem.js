@@ -17,7 +17,9 @@ const ModuleItem = (props) => {
                 <Card.Body>
                     {/* Blockquote used to add movie poster and year */}
                     <blockquote className="blockquote mb-0">
-                        <h1>hello from module card</h1>
+                        <p>Exam 1 Score: {props.mymodule.exam1}</p>
+                        <p>Exam 2 Score: {props.mymodule.exam2}</p>
+                        <p>Total Score: {props.mymodule.exam1 + props.mymodule.exam2}</p>
                     </blockquote>
                 </Card.Body>
            </Card>

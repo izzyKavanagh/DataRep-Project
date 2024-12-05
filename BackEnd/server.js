@@ -20,7 +20,9 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.lledy.mongodb.net/ProjDB');
 const moduleSchema = new mongoose.Schema({
-    title: String
+    title: String,
+    exam1: Number, 
+    exam2: Number
 });
  
 const moduleModel = new mongoose.model('Module', moduleSchema);
@@ -38,13 +40,13 @@ app.get('/api/modules/:id', async (req, res) => {
   });
 
   app.post('/api/modules', async(req,res)=>{
-    console.log(req.body.title) // Log the title from the request body to the console
+    console.log(req.body) // Log the title from the request body to the console
 
     // Extract movie details from the request body
-    const {title} = req.body;
+    const { title,exam1,exam2 } = req.body;
 
     // Create a new movie document using the extracted details
-    const newModule = new moduleModel({ title});
+    const newModule = new moduleModel({ title,exam1,exam2 });
     // Save the new movie to the database
     await newModule.save();
 

@@ -4,13 +4,17 @@ import { useState } from "react";
 const Create = () => {
 
   const [title, setTitle] = useState('');
+  const [exam1, setExam1] = useState('');
+  const [exam2, setExam2] = useState('');
 
   const handleSubmit = (e)=>{
     e.preventDefault(); // Prevents the default form submission behavior (page reload)
-    console.log(`Title: ${title}`);//log values to the console
+    console.log(`Title: ${title}, Exam1: ${exam1}, Exam2: ${exam2}`);//log values to the console
     // Create a movie object using the current state values
     const module = {
-      title: title
+      title: title,
+      exam1: exam1,
+      exam2: exam2
     };
       
     // Make a POST request to add the movie to the backend database
@@ -32,6 +36,18 @@ const Create = () => {
             className="form-control"
             value={title} //input bound to title state
             onChange={(e) => { setTitle(e.target.value) }} // Update title state on change
+          />
+          <label>Add Exam 1 Grade: </label>
+          <input type="text"
+            className="form-control"
+            value={exam1} //input bound to title state
+            onChange={(e) => { setExam1(e.target.value) }} // Update title state on change
+          />
+          <label>Add Exam 2 Grade: </label>
+          <input type="text"
+            className="form-control"
+            value={exam2} //input bound to title state
+            onChange={(e) => { setExam2(e.target.value) }} // Update title state on change
           />
         </div>
         {/* Submit button to trigger the form submission */}

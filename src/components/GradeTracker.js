@@ -1,15 +1,38 @@
-// Import MovieItem component 
-import ModuleItem from "./ModuleItem";
-//reusable component 'Movies'
+//import components
+import Modules from "./Modules";
+// Import React hooks
+import { useEffect, useState } from "react"; 
+//import axios
+import axios from "axios";
 
-//arrow 'Movies' function that receives props variable and passes content to MovieItem and displays it
-const Modules = (props) => {
-    return props.myModules.map(
-        (module)=>{
-            //each object in myMovies array is passed to MovieItem
-            return <ModuleItem mymodule={module} key={module._id}/> //passes object and unique key (_id)
-        }
-    )
+// Define the Read component
+const GradeTracker = () => {
+  const [modules, setModules] = useState([]); //react hook used to manage the state of the movies variable
+  //movies holds the current state (will hold array of movie data retrieved from an API - initially an empty array)
+  //setMovies function is used to update the movies value
+
+  //react hook that fetches data
+  useEffect(()=>{
+    //Make axios (library that supports HTTP requests) GET request (HTTP request) to the provided URL to retrieve movie data
+    axios.get('http://localhost:4000/api/modules')
+    .then((response)=>{ 
+      console.log(response.data);//log response to console
+      setModules(response.data.modules); // Update state with the movie data received from API
+    })
+    .catch((error)=>{ // Handle any errors that occur during the API request
+      console.log(error); //log them to console
+    });
+  },[]);
+
+  return (
+      <div>
+        {/* display h3 message */}
+        <h3>Read component</h3>
+        {/* Pass the fetched movies data to the Movies component as a prop */}
+        <Modules myModules={modules}/> 
+        {/* Include Footer component */}
+      </div>
+    );
   };
   
-  export default Modules; //exports Movies function so it can be imported and used in other files
+  export default GradeTracker; //export components
