@@ -14,7 +14,7 @@ const Timetable = () => {
         e.preventDefault();
         const newEntry = { subject, startTime, endTime };
     }
-    axios.post('http://localhost:4000/api/timetable', newEntry)
+    axios.post('http://localhost:4000/api/timetables', newEntry)
     .then((res) => console.log(res.data)) // Log success response
     .catch((err) => console.log(err.data)); // Log error response if request fails
 
