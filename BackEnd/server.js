@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:admin@cluster0.lledy.mongodb.net/ProjectDB');
+mongoose.connect('mongodb+srv://admin:admin@cluster0.lledy.mongodb.net/ProjDB');
 const moduleSchema = new mongoose.Schema({
     title: String
 });
@@ -26,8 +26,8 @@ const moduleSchema = new mongoose.Schema({
 const moduleModel = new mongoose.model('Module', moduleSchema);
 
 app.get('/api/modules', async(req, res) => {
-    const module = await moduleModel.find({});
-    res.json({module});
+    const modules = await moduleModel.find({});
+    res.json({modules});
 });
 
 app.get('/api/modules/:id', async (req, res) => {
