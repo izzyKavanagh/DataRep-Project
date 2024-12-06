@@ -17,7 +17,6 @@ const TimetableItem = (props) => {
                 <Card.Body>
                     <blockquote className="blockquote mb-0">
                         <p><strong>Time:</strong> {props.mytimetable.startTime} - {props.mytimetable.endTime}</p>
-                        <p><strong>Details:</strong> {props.mytimetable.details}</p>
                     </blockquote>
                 </Card.Body>
             </Card>

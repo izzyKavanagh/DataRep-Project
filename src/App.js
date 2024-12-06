@@ -6,6 +6,7 @@ import WelcomePage from './components/WelcomePage.js';
 import Create from './components/Create.js';
 import GradeTracker from './components/GradeTracker.js';
 import ReadTimetables from './components/ReadTimetable.js';
+import CreateTimetable from './components/CreateTimetable.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/read" element={<GradeTracker />} />
         <Route path="/timetables" element={<ReadTimetables />} />
+        <Route path="/createTimetable" element={<CreateTimetable />} />
       </Routes>
     </Router>
   );

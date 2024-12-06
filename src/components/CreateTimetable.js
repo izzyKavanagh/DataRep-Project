@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const Timetable = () => {
+const CreateTimetable = () => {
 
     // State to manage the timetable entries
     const [subject, setSubject] = useState('');
@@ -43,4 +43,4 @@ const Timetable = () => {
         </div>
     );
 };
-export default Timetable;
+export default CreateTimetable;
