@@ -35,6 +35,13 @@ const timetableSchema = new mongoose.Schema({
 
 const TimetableModel = mongoose.model('Timetable', timetableSchema);
 
+const todoSchema = new mongoose.Schema({
+    task: String,       // The description of the to-do task
+    completed: Boolean, // Boolean to track if the task is completed
+});
+
+const TodoModel = mongoose.model('Todo', todoSchema);
+
 app.get('/api/modules', async(req, res) => {
     const modules = await moduleModel.find({});
     res.json({modules});
