@@ -7,6 +7,7 @@ import Create from './components/Create.js';
 import GradeTracker from './components/GradeTracker.js';
 import ReadTimetables from './components/ReadTimetable.js';
 import CreateTimetable from './components/CreateTimetable.js';
+import ReadToDoList from './components/ReadToDoList.js';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/read" element={<GradeTracker />} />
         <Route path="/timetables" element={<ReadTimetables />} />
         <Route path="/createTimetable" element={<CreateTimetable />} />
+        <Route path="/todolist" element={<ReadToDoList />} />
       </Routes>
     </Router>
   );

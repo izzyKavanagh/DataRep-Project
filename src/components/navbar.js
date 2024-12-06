@@ -10,6 +10,7 @@ const NavigationBar = () => {
         <Navbar.Brand href="/">Navbar</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/home">MainPage</Nav.Link>
+          <Nav.Link href="/todolist">To-Do List</Nav.Link>
           {/*<Nav.Link href="/create">Create</Nav.Link> */}
           {/*<Nav.Link href="/read">GradeTracker</Nav.Link> */}
           {/* <Nav.Link href="/timetables">Timetables</Nav.Link> */}
