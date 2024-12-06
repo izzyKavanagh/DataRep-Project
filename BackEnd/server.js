@@ -96,6 +96,39 @@ app.post('/api/timetables', async(req,res)=>{
     res.status(201).json({ message: 'Timetable created successfully', timetable: newTimetable }); // Send a confirmation response to the client
 })
 
+// Fetch all to-do items
+app.get('/api/todos', async (req, res) => {
+    const todos = await TodoModel.find({});
+    res.json({ todos });
+});
+
+// Fetch a single to-do item by ID
+app.get('/api/todos/:id', async (req, res) => {
+    const todo = await TodoModel.findById(req.params.id);
+    res.json(todo);
+});
+
+// Create a new to-do item
+app.post('/api/todos', async (req, res) => {
+    const { task, completed } = req.body;
+    const newTodo = new TodoModel({ task, completed: completed || false }); // Default completed to false
+    await newTodo.save();
+    res.status(201).json({ message: 'To-Do item created successfully', todo: newTodo });
+});
+
+// Update an existing to-do item
+app.put('/api/todos/:id', async (req, res) => {
+    const { task, completed } = req.body;
+    const updatedTodo = await TodoModel.findByIdAndUpdate(req.params.id, { task, completed }, { new: true });
+    res.json({ message: 'To-Do item updated successfully', todo: updatedTodo });
+});
+
+// Delete a to-do item
+app.delete('/api/todos/:id', async (req, res) => {
+    await TodoModel.findByIdAndDelete(req.params.id);
+    res.json({ message: 'To-Do item deleted successfully' });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
