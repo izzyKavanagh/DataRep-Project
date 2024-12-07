@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
-import { Fab, Box } from '@mui/material';
+import { Fab, Box, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const TodoItem = (props) => {
     // Local state to manage the task list
     const [todos, setTodos] = useState(props.todos);
     const [newTask, setNewTask] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
 
     // Sync todos state when props.todos changes
     useEffect(() => {
@@ -32,6 +33,18 @@ const TodoItem = (props) => {
                 console.error("Error updating task:", err);
             });
     };
+
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
+    const handleAddTask = () => {
+
+    }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
@@ -59,12 +72,36 @@ const TodoItem = (props) => {
                 <Card.Footer style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
                     height: '50px', backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="secondary" aria-label="add" sx={{ boxShadow: 'none' }}>
+                        <Fab size="small" color="secondary" aria-label="add" sx={{ boxShadow: 'none' }} onClick={handleOpenDialog}>
                             <AddIcon/>
                         </Fab>
                     </Box>
                 </Card.Footer>
             </Card>
+
+             {/* Dialog for adding new task */}
+            <Dialog open={openDialog} onClose={handleCloseDialog}>
+                <DialogTitle>Add New Task</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Task"
+                        type="text"
+                        fullWidth
+                        value={newTask}
+                        onChange={(e) => setNewTask(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleAddTask} color="primary">
+                        Add Task
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
