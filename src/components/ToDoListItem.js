@@ -1,10 +1,13 @@
-import Card from 'react-bootstrap/Card';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Card } from 'react-bootstrap';
+import { Fab, Box } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 const TodoItem = (props) => {
     // Local state to manage the task list
     const [todos, setTodos] = useState(props.todos);
+    const [newTask, setNewTask] = useState('');
 
     // Sync todos state when props.todos changes
     useEffect(() => {
@@ -18,7 +21,7 @@ const TodoItem = (props) => {
             todo._id === id ? { ...todo, completed: !currentStatus } : todo
         );
         setTodos(updatedTodos);
-s
+
         // Send the updated status to the database
         axios
             .put(`http://localhost:4000/api/todos/${id}`, { completed: !currentStatus })
@@ -31,11 +34,11 @@ s
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
             {/* Single card containing all tasks */}
-            <Card>
+            <Card  style={{ width: 'auto', maxWidth: '500px' }}>
                 <Card.Header>Task List</Card.Header>
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                     <ul style={{ listStyleType: 'none', padding: 0 }}>
                         {todos.map((todo) => (
                             <li
@@ -65,6 +68,13 @@ s
                         ))}
                     </ul>
                 </Card.Body>
+                <Card.Footer>
+                    <Box sx={{ '& > :not(style)': { m: 1, position: 'relative', bottom: 10 } }}>
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon/>
+                        </Fab>
+                    </Box>
+                </Card.Footer>
             </Card>
         </div>
     );
