@@ -36,41 +36,30 @@ const TodoItem = (props) => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
             {/* Single card containing all tasks */}
-            <Card  style={{ width: 'auto', maxWidth: '500px' }}>
-                <Card.Header>Task List</Card.Header>
+            <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
+                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>Task List</Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                         {todos.map((todo) => (
-                            <li
-                                key={todo._id}
-                                style={{
-                                    marginBottom: '10px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}
-                            >
+                            <li key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
+                             borderRadius: '20px'}}>
                                 {/* Checkbox for each task */}
-                                <input
-                                    type="checkbox"
-                                    checked={todo.completed}
+                                <input type="checkbox" checked={todo.completed}
                                     onChange={() => handleCheckboxChange(todo._id, todo.completed)}
-                                    style={{ marginRight: '10px' }}
+                                    style={{ marginRight: '10px'}}
                                 />
                                 {/* Task text with dynamic strikethrough */}
-                                <span
-                                    style={{
-                                        textDecoration: todo.completed ? 'line-through' : 'none',
-                                    }}
-                                >
+                                <span style={{textDecoration: todo.completed ? 'line-through' : 'none',}}>
                                     {todo.task}
                                 </span>
                             </li>
                         ))}
                     </ul>
                 </Card.Body>
-                <Card.Footer>
-                    <Box sx={{ '& > :not(style)': { m: 1, position: 'relative', bottom: 10 } }}>
-                        <Fab color="primary" aria-label="add">
+                <Card.Footer style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
+                    height: '50px', backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
+                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                        <Fab size="small" color="secondary" aria-label="add" sx={{ boxShadow: 'none' }}>
                             <AddIcon/>
                         </Fab>
                     </Box>
