@@ -43,6 +43,26 @@ const TodoItem = (props) => {
     };
 
     const handleAddTask = () => {
+        //check if the task string has whitespace characters at beginning/end 
+        if (newTask.trim() === '') {
+            return;
+        }
+
+        const task = {
+            task: newTask,
+            completed: false, // Set completed to false by default
+        };
+
+        // Add the new task to the todo list
+        axios.post('http://localhost:4000/api/todos', task)
+        .then((res) => {
+            setTodos(prevTodos => [...prevTodos, res.data.todo]); // Add the new task to the list
+            setNewTask(''); // Clear the input
+            handleCloseDialog(); // Close the dialog
+        })
+        .catch((err) => {
+            console.error("Error adding task:", err);
+        });
 
     }
 
