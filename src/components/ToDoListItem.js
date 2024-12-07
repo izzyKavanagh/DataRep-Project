@@ -12,7 +12,9 @@ const TodoItem = (props) => {
 
     // Sync todos state when props.todos changes
     useEffect(() => {
-        setTodos(props.todos);
+        //sort tasks when page is loaded/reloaded
+        const sortedTodos = [...props.todos].sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
+        setTodos(sortedTodos);
         console.log("Tasks updated:", props.todos);
     }, [props.todos]);
 
@@ -21,6 +23,8 @@ const TodoItem = (props) => {
         const updatedTodos = todos.map((todo) =>
             todo._id === id ? { ...todo, completed: !currentStatus } : todo
         );
+        //sort the tasks based on completed status
+        updatedTodos.sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
         setTodos(updatedTodos);
 
         // Send the updated status to the database
