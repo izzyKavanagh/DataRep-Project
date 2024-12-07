@@ -1,53 +1,72 @@
 import Card from 'react-bootstrap/Card';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const TodoItem = (props) => {
+    // Local state to manage the task list
+    const [todos, setTodos] = useState(props.todos);
 
-    const [completed, setCompleted] = useState(props.todo.completed);
-
+    // Sync todos state when props.todos changes
     useEffect(() => {
-        console.log("Task:", props.todo);
-    }, [props.todo]);
+        setTodos(props.todos);
+        console.log("Tasks updated:", props.todos);
+    }, [props.todos]);
 
-    const handleCheckboxChange = () => {
-        const newCompletedStatus = !completed;
-        setCompleted(newCompletedStatus); // Update local state
-    
+    const handleCheckboxChange = (id, currentStatus) => {
+        // Update the local state
+        const updatedTodos = todos.map((todo) =>
+            todo._id === id ? { ...todo, completed: !currentStatus } : todo
+        );
+        setTodos(updatedTodos);
+s
         // Send the updated status to the database
-        axios.put(`http://localhost:4000/api/todos/${props.todo._id}`, { completed: newCompletedStatus })
-        .then((res) => {
-            console.log(`Task "${props.todo.task}" updated to ${newCompletedStatus ? 'Completed' : 'Incomplete'}`);
-        })
-        .catch((err) => {
-            console.error("Error updating task:", err);
-        });
+        axios
+            .put(`http://localhost:4000/api/todos/${id}`, { completed: !currentStatus })
+            .then((res) => {
+                console.log(`Task "${id}" updated to ${!currentStatus ? 'Completed' : 'Incomplete'}`);
+            })
+            .catch((err) => {
+                console.error("Error updating task:", err);
+            });
     };
 
     return (
         <div>
-        {/* Card to display the to-do item */}
-        <Card>
-          <Card.Body>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {/* Checkbox to mark task as complete/incomplete */}
-              <input
-                type="checkbox"
-                checked={props.todo.completed}
-                onChange={handleCheckboxChange}
-                style={{ marginRight: '10px' }}
-              />
-              <p style={{ margin: 0, textDecoration: props.todo.completed ? 'line-through' : 'none' }}>
-                <strong>Task:</strong> {props.todo.task}
-              </p>
-            </div>
-            <p>
-              <strong>Status:</strong> {props.todo.completed ? 'Completed' : 'Incomplete'}
-            </p>
-          </Card.Body>
-        </Card>
-      </div>
+            {/* Single card containing all tasks */}
+            <Card>
+                <Card.Header>Task List</Card.Header>
+                <Card.Body>
+                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {todos.map((todo) => (
+                            <li
+                                key={todo._id}
+                                style={{
+                                    marginBottom: '10px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                {/* Checkbox for each task */}
+                                <input
+                                    type="checkbox"
+                                    checked={todo.completed}
+                                    onChange={() => handleCheckboxChange(todo._id, todo.completed)}
+                                    style={{ marginRight: '10px' }}
+                                />
+                                {/* Task text with dynamic strikethrough */}
+                                <span
+                                    style={{
+                                        textDecoration: todo.completed ? 'line-through' : 'none',
+                                    }}
+                                >
+                                    {todo.task}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </Card.Body>
+            </Card>
+        </div>
     );
 };
 
