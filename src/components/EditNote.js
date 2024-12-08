@@ -16,9 +16,11 @@ const EditNote = () => {
     useEffect(() => {
         axios.get(`http://localhost:4000/api/notes/${id}`)
         .then(response => {
-            const { title, noteBody } = response.data; 
+            const { title, dateCreated, noteBody } = response.data; 
             setNoteTitle(title);
+            setDateCreated(dateCreated);
             setNoteBody(noteBody);
+                
         })
         .catch(error => {
             console.error('There was an error fetching the note!', error);
@@ -36,7 +38,7 @@ const EditNote = () => {
         axios.put(`http://localhost:4000/api/notes/${id}`, updatedNote)
         .then(() => {
             console.log('Note updated successfully');
-            navigate('/readNotes'); // Redirect to the notes page
+            navigate('/notes'); // Redirect to the notes page
         })
         .catch((error) => console.log(error));
     };
