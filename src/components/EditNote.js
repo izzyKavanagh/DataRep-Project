@@ -25,6 +25,21 @@ const EditNote = () => {
         });
     }, [id]);
 
+    const handleSaveNote = () => {
+        const updatedNote = {
+            title: noteTitle,
+            noteBody: noteBody,
+            dateEdited: new Date(), // Update the "edited" timestamp
+        };
+        
+        axios.put(`http://localhost:4000/api/notes/${id}`, updatedNote)
+        .then(() => {
+            console.log('Note updated successfully');
+            navigate('/readNotes'); // Redirect to the notes page
+        })
+        .catch((error) => console.log(error));
+    };
+
     return (
     <Container>
         <h1>Edit Note</h1>
@@ -51,7 +66,7 @@ const EditNote = () => {
 
         <Row>
         <Col>
-            <Button style={{ borderRadius: '20px', padding: '10px 20px' }}> Save Note</Button>
+            <Button onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' }}> Save Note</Button>
         </Col>
         </Row>
     </Container>
