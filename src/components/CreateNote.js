@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateNote = () => {
 
@@ -8,6 +9,8 @@ const CreateNote = () => {
     const [dateCreated, setDateCreated] = useState("");
     const [dateEdited, setDateEdited] = useState("");
     const [noteBody, setNoteBody] = useState("");
+
+    const navigate = useNavigate();
   
     useEffect(() => {
         const currentDate = new Date().toLocaleDateString("en-GB"); // Format as DD/MM/YYYY
@@ -35,6 +38,8 @@ const CreateNote = () => {
       axios.post('http://localhost:4000/api/notes', notes)
       .then((res) => console.log(res.data)) // Log success response
       .catch((err) => console.log(err.data)); // Log error response if request fails
+
+      navigate("/notes");
     };
   
     return (
