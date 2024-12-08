@@ -5,13 +5,13 @@ import ToDos from './ToDoList';
 const ReadToDoList = () => {
     const [todos, setTodos] = useState([]);
 
-    const fetchTodos = () => {
-        axios.get('http://localhost:4000/api/todos')
-        .then((res) => setTodos(res.data.todos))
-        .catch((err) => console.error(err));
-    };
-
     useEffect(() => {
+        const fetchTodos = () => {
+            axios.get('http://localhost:4000/api/todos')
+            .then((res) => setTodos(res.data.todos))
+            .catch((err) => console.error(err));
+        };
+
         fetchTodos();
     }, []);
 
