@@ -27,9 +27,10 @@ const EditNote = () => {
 
     const handleSaveNote = () => {
         const updatedNote = {
-            title: noteTitle,
+            title: title,
             noteBody: noteBody,
-            dateEdited: new Date(), // Update the "edited" timestamp
+            dateCreated: dateCreated, // Keep the original creation date
+            dateEdited: new Date()
         };
         
         axios.put(`http://localhost:4000/api/notes/${id}`, updatedNote)
