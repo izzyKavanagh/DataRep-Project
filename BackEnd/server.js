@@ -42,6 +42,21 @@ const todoSchema = new mongoose.Schema({
 
 const TodoModel = mongoose.model('Todo', todoSchema);
 
+const noteSchema = new mongoose.Schema({
+    title: String,          // Title of the note
+    dateCreated: {          // Date the note was created
+        type: Date,
+        default: Date.now,
+    },
+    dateEdited: {           // Date the note was last edited
+        type: Date,
+        default: Date.now,
+    },
+    noteBody: String,       // The content of the note
+});
+
+const NoteModel = mongoose.model('Note', noteSchema);
+
 app.get('/api/modules', async(req, res) => {
     const modules = await moduleModel.find({});
     res.json({modules});
