@@ -10,6 +10,7 @@ import CreateTimetable from './components/CreateTimetable.js';
 import ReadToDoList from './components/ReadToDoList.js';
 import ReadNotes from './components/ReadNotes.js';
 import CreateNote from './components/CreateNote.js';
+import EditNote from './components/EditNote.js';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/todolist" element={<ReadToDoList />} />
         <Route path="/notes" element={<ReadNotes />} />
         <Route path="/createNote" element={<CreateNote />} />
+        <Route path="/editNote/:id" element={<EditNote />} />
       </Routes>
     </Router>
   );
