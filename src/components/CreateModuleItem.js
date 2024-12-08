@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Create = () => {
+const CreateModuleItem = () => {
 
   const [title, setTitle] = useState('');
   const [exam1, setExam1] = useState('');
@@ -57,4 +57,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateModuleItem;
