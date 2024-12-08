@@ -60,7 +60,7 @@ const TodoItem = (props) => {
         // Add the new task to the todo list
         axios.post('http://localhost:4000/api/todos', task)
         .then((res) => {
-            setTodos(prevTodos => [...prevTodos, res.data.todo]); // Add the new task to the list
+            setTodos((prevTodos) => [res.data.todo, ...prevTodos]); // Add new task to the beginning
             setNewTask(''); // Clear the input
             handleCloseDialog(); // Close the dialog
         })
@@ -74,7 +74,7 @@ const TodoItem = (props) => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
             {/* Single card containing all tasks */}
             <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
-                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>Task List</Card.Header>
+                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}><h1>Task List</h1></Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                     <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                         {todos.map((todo) => (
