@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 
 const CreateNote = () => {
 
@@ -43,33 +44,43 @@ const CreateNote = () => {
     };
   
     return (
-      <div>
-        <h1>Create New Note</h1>
-  
-        {/* Title input field */}
-        <input 
-          type="text" 
-          placeholder="Title" 
-          style={{ width: "100%", marginBottom: "10px", padding: "10px" }} 
-          value={title} // Controlled input, value is tied to state
-          onChange={handleTitleChange} 
-        />
-  
-        {/* Body input field */}
-        <div
-          contentEditable
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            minHeight: "200px",
-            backgroundColor: "#f9f9f9",
-            marginBottom: "20px",
-          }}
-          onInput={handleBodyChange}/>
-  
-        {/* Save Button */}
-        <button onClick={handleSaveNote}>Save Note</button>
-      </div>
+        <Container>
+            <h1>Create New Note</h1>
+            <Row className="mb-4">
+                <Col>
+                    <Form.Control
+                        type="text" 
+                        placeholder="Title" 
+                        style={{ width: "100%", marginBottom: "10px", padding: "10px" }} 
+                        value={title} // Controlled input, value is tied to state
+                        onChange={handleTitleChange} 
+                    />
+                </Col>
+            </Row>
+
+            <Row className="mb-4">
+                <Col>
+                    {/* Body input field */}
+                    <div
+                    contentEditable
+                    style={{
+                        border: "2px solid #ccc",
+                        padding: "10px",
+                        minHeight: "200px",
+                        backgroundColor: "#f9f9f9",
+                        marginBottom: "20px",
+                    }}
+                    onInput={handleBodyChange}/>
+                </Col>
+            </Row>
+    
+            <Row>
+                <Col>
+                    {/* Save Button */}
+                    <button onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' }}>Save Note</button>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

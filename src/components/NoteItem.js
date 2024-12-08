@@ -37,7 +37,7 @@ const NoteItem = (props) => {
               {/* Card Header displays movie title */}
               <Card.Header><h3>{props.mynote.title}</h3></Card.Header>
               {/* Card Body contains movie information */} 
-              <Card.Body style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+              <Card.Body style={{ maxHeight: '150px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                   {/* Blockquote used to add movie poster and year */}
                   <blockquote className="blockquote mb-0">
                     <p dangerouslySetInnerHTML={{ __html: props.mynote.noteBody }} style={{ fontSize: '13px', lineHeight: '1' }}/>
