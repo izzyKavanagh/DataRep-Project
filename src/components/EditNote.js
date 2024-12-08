@@ -8,7 +8,6 @@ const EditNote = () => {
     const { id } = useParams(); // Getting the note id from the URL
     const [title, setNoteTitle] = useState('');
     const [dateCreated, setDateCreated] = useState('');
-    const [dateEdited, setDateEdited] = useState('');
     const [noteBody, setNoteBody] = useState('');
     const navigate = useNavigate();
 
@@ -43,6 +42,10 @@ const EditNote = () => {
         .catch((error) => console.log(error));
     };
 
+    const handleBodyChange = (event) => {
+        setNoteBody(event.target.innerHTML);  // Update state with the inner HTML
+    };
+
     return (
     <Container>
         <h1>Edit Note</h1>
@@ -63,7 +66,7 @@ const EditNote = () => {
             {/* Editable area for the note body */}
             <div contentEditable
                 style={{border: '1px solid #ccc', padding: '10px', minHeight: '200px', backgroundColor: '#f9f9f9',}}
-                onInput={(e) => setNoteBody(e.target.innerHTML)} dangerouslySetInnerHTML={{ __html: noteBody }}/>
+                onInput={handleBodyChange} dangerouslySetInnerHTML={{ __html: noteBody }}/>
         </Col>
         </Row>
 
