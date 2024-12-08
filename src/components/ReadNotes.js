@@ -4,7 +4,8 @@ import Notes from "./Notes";
 import { useEffect, useState } from "react"; 
 //import axios
 import axios from "axios";
-import { Form, Container, Row, Col } from "react-bootstrap";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // Define the Read component
 const ReadNotes = () => {
@@ -34,7 +35,11 @@ const ReadNotes = () => {
             <Form.Control type="text" placeholder="Search for notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </Col>
         </Row>
-
+        {/* Create New Note Button */}
+        <Link to="/createNote" className="btn btn-primary" style={{ padding: '10px 15px', fontSize: '16px', 
+          marginBottom: '20px', backgroundColor: 'blue', borderRadius: '50px', display: 'inline-block' }}>
+          New Note +
+        </Link>
         {/* Display the notes */}
         <Row>
           <Notes myNotes={notes} />
