@@ -40,11 +40,11 @@ const ReadNotes = () => {
             <Form.Control type="text" placeholder="Search for notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </Col>
         </Row>
-        {/* Create New Note Button */}
-        <Link to="/createNote" className="btn btn-primary" style={{ padding: '10px 15px', fontSize: '16px', 
-          marginBottom: '20px', backgroundColor: 'blue', borderRadius: '50px', display: 'inline-block' }}>
-          New Note +
-        </Link>
+          {/* Create New Note Button */}
+          <Link to="/createNote" className="btn btn-primary" style={{ padding: '10px 15px', fontSize: '16px', 
+            marginBottom: '20px', backgroundColor: 'blue', borderRadius: '50px', display: 'inline-block' }}>
+              New Note +
+          </Link>
         {/* Display the notes */}
         <Row>
           <Notes myNotes={filteredNotes} />
@@ -54,4 +54,4 @@ const ReadNotes = () => {
   );
 };
   
-  export default ReadNotes; //export components
+export default ReadNotes; //export components
