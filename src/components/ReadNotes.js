@@ -25,6 +25,11 @@ const ReadNotes = () => {
     });
   },[]);
 
+  // Filter the notes based on the search query
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
       {/* Container to hold the search bar and notes */}
@@ -42,7 +47,7 @@ const ReadNotes = () => {
         </Link>
         {/* Display the notes */}
         <Row>
-          <Notes myNotes={notes} />
+          <Notes myNotes={filteredNotes} />
         </Row>
       </Container>
     </div>
