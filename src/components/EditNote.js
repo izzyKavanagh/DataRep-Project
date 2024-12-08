@@ -1,50 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // For retrieving the note id from the URL and navigating
+import { useParams, useNavigate } from 'react-router-dom'; // For retrieving the note id from the URL and navigating
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 const EditNote = () => {
 
-  return (
+    const { id } = useParams(); // Getting the note id from the URL
+    const [title, setNoteTitle] = useState('');
+    const [dateCreated, setDateCreated] = useState('');
+    const [dateEdited, setDateEdited] = useState('');
+    const [noteBody, setNoteBody] = useState('');
+    const navigate = useNavigate();
+
+    // Fetch the note data 
+    useEffect(() => {
+        axios.get(`http://localhost:4000/api/notes/${id}`)
+        .then(response => {
+            const { title, noteBody } = response.data; 
+            setNoteTitle(title);
+            setNoteBody(noteBody);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the note!', error);
+        });
+    }, [id]);
+
+    return (
     <Container>
-      <h1>Edit Note</h1>
-      <Row className="mb-4">
+        <h1>Edit Note</h1>
+        <Row className="mb-4">
         <Col>
-          <Form.Control
+            <Form.Control
             type="text"
             placeholder="Title"
-            //value={noteTitle}
-            //onChange={handleTitleChange}
+            value={title}
+            onChange={(e) => setNoteTitle(e.target.value)} 
             style={{ width: '100%', marginBottom: '10px', padding: '10px' }}
-          />
+            />
         </Col>
-      </Row>
+        </Row>
 
-      <Row className="mb-4">
+        <Row className="mb-4">
         <Col>
-          {/* Editable area for the note body */}
-          <div
-            contentEditable
-            style={{
-              border: '1px solid #ccc',
-              padding: '10px',
-              minHeight: '200px',
-              backgroundColor: '#f9f9f9',
-            }}
-            //onInput={handleBodyChange}
-            //dangerouslySetInnerHTML={{ __html: noteBody }}
-          />
+            {/* Editable area for the note body */}
+            <div contentEditable
+                style={{border: '1px solid #ccc', padding: '10px', minHeight: '200px', backgroundColor: '#f9f9f9',}}
+                onInput={(e) => setNoteBody(e.target.innerHTML)} dangerouslySetInnerHTML={{ __html: noteBody }}/>
         </Col>
-      </Row>
+        </Row>
 
-      <Row>
+        <Row>
         <Col>
-          <Button>
-            Save Note
-          </Button>
+            <Button style={{ borderRadius: '20px', padding: '10px 20px' }}> Save Note</Button>
         </Col>
-      </Row>
+        </Row>
     </Container>
-  );
+    );
 };
 
 export default EditNote;
