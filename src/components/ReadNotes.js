@@ -4,12 +4,12 @@ import Notes from "./Notes";
 import { useEffect, useState } from "react"; 
 //import axios
 import axios from "axios";
+import { Form, Container, Row, Col } from "react-bootstrap";
 
 // Define the Read component
 const ReadNotes = () => {
   const [notes, setNotes] = useState([]); //react hook used to manage the state of the movies variable
-  //movies holds the current state (will hold array of movie data retrieved from an API - initially an empty array)
-  //setMovies function is used to update the movies value
+  const [searchQuery, setSearchQuery] = useState("");
 
   //react hook that fetches data
   useEffect(()=>{
@@ -25,14 +25,23 @@ const ReadNotes = () => {
   },[]);
 
   return (
-      <div>
-        {/* display h3 message */}
-        <h3>Read component</h3>
-        {/* Pass the fetched movies data to the Movies component as a prop */}
-        <Notes myNotes={notes}/> 
-        {/* Include Footer component */}
-      </div>
-    );
-  };
+    <div>
+      {/* Container to hold the search bar and notes */}
+      <Container>
+        <Row className="mb-4" style={{ marginTop: '20px' }}>
+          <Col>
+            {/* Search bar */}
+            <Form.Control type="text" placeholder="Search for notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+          </Col>
+        </Row>
+
+        {/* Display the notes */}
+        <Row>
+          <Notes myNotes={notes} />
+        </Row>
+      </Container>
+    </div>
+  );
+};
   
   export default ReadNotes; //export components
