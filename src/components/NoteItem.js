@@ -23,11 +23,11 @@ const NoteItem = (props) => {
               <Card.Body style={{ maxHeight: '200px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                   {/* Blockquote used to add movie poster and year */}
                   <blockquote className="blockquote mb-0">
-                    <p dangerouslySetInnerHTML={{ __html: props.mynote.noteBody }}/>
+                    <p dangerouslySetInnerHTML={{ __html: props.mynote.noteBody }} style={{ fontSize: '13px', lineHeight: '1' }}/>
                   </blockquote>
               </Card.Body>
               <Card.Footer className="text-muted">
-                <div style={{ fontSize: 'small', display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ fontSize: '10PX', display: 'flex', justifyContent: 'space-between' }}>
                     <span><strong>Created:</strong> {formatDate(props.mynote.dateCreated)}</span>
                     <span><strong>Edited:</strong> {formatDate(props.mynote.dateEdited)}</span>
                 </div>
