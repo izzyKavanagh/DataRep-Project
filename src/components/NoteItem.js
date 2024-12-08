@@ -23,7 +23,7 @@ const NoteItem = (props) => {
               <Card.Body style={{ maxHeight: '200px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                   {/* Blockquote used to add movie poster and year */}
                   <blockquote className="blockquote mb-0">
-                      <p>Note Body: {props.mynote.noteBody}</p>
+                    <p dangerouslySetInnerHTML={{ __html: props.mynote.noteBody }}/>
                   </blockquote>
               </Card.Body>
               <Card.Footer className="text-muted">
