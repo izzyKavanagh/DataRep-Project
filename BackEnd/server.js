@@ -30,7 +30,7 @@ const moduleModel = new mongoose.model('Module', moduleSchema);
 const timetableSchema = new mongoose.Schema({
   subject: String,
   startTime: String,
-  endTime: String,
+  endTime: String
 });
 
 const TimetableModel = mongoose.model('Timetable', timetableSchema);
@@ -43,16 +43,10 @@ const todoSchema = new mongoose.Schema({
 const TodoModel = mongoose.model('Todo', todoSchema);
 
 const noteSchema = new mongoose.Schema({
-    title: String,          // Title of the note
-    dateCreated: {          // Date the note was created
-        type: Date,
-        default: Date.now,
-    },
-    dateEdited: {           // Date the note was last edited
-        type: Date,
-        default: Date.now,
-    },
-    noteBody: String,       // The content of the note
+    title: String,       
+    dateCreated: Date,
+    dateEdited: Date,
+    noteBody: String      
 });
 
 const NoteModel = mongoose.model('Note', noteSchema);
@@ -142,6 +136,39 @@ app.put('/api/todos/:id', async (req, res) => {
 app.delete('/api/todos/:id', async (req, res) => {
     await TodoModel.findByIdAndDelete(req.params.id);
     res.json({ message: 'To-Do item deleted successfully' });
+});
+
+// Fetch all notes
+app.get('/api/notes', async (req, res) => {
+    const notes = await NoteModel.find({});
+    res.json({ notes });
+});
+
+// Fetch a single note by ID
+app.get('/api/notes/:id', async (req, res) => {
+    const notes = await NoteModel.findById(req.params.id);
+    res.json(notes);
+});
+
+// Create a new note
+app.post('/api/notes', async (req, res) => {
+    const { title, dateCreated, dateEdited, noteBody } = req.body;
+    const newNote = new NoteModel({ title, dateCreated, dateEdited, noteBody }); 
+    await newNote.save();
+    res.status(201).json({ message: 'Note created successfully', note: newNote });
+});
+
+// Update an existing note
+app.put('/api/notes/:id', async (req, res) => {
+    const { title, dateCreated, dateEdited, noteBody } = req.body;
+    const updatedNote = await NoteModel.findByIdAndUpdate(req.params.id, { title, dateCreated, dateEdited, noteBody }, { new: true });
+    res.json({ message: 'Note updated successfully', note: updatedNote });
+});
+
+// Delete a note
+app.delete('/api/notes/:id', async (req, res) => {
+    await NoteModel.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Note deleted successfully' });
 });
 
 app.listen(port, () => {
