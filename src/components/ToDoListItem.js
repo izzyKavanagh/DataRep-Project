@@ -74,7 +74,13 @@ const TodoItem = (props) => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
             {/* Single card containing all tasks */}
             <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
-                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}><h1>Task List</h1></Card.Header>
+                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
+                    <h1>Task List</h1>
+                    <Button style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '12px', 
+                        color: 'black', border: '1px solid black', borderRadius: '40px', }}>
+                        Edit
+                    </Button>
+                </Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                     <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                         {todos.map((todo) => (
