@@ -19,8 +19,17 @@ const TodoItem = (props) => {
         console.log("Tasks updated:", props.todos);
     }, [props.todos]);
 
+
     const toggleEditMode = () => {
         setEditing(!editing); // Toggle edit mode
+    };
+
+    //function for deleting tasks from list
+    const handleDeleteTask = (id) => {
+        const updatedTodos = todos.filter((todo) => todo._id !== id);
+        setTodos(updatedTodos);
+    
+        axios.delete(`http://localhost:4000/api/todos/${id}`).catch((err) => console.error('Error deleting task:', err));
     };
 
     const handleCheckboxChange = (id, currentStatus) => {
@@ -71,7 +80,6 @@ const TodoItem = (props) => {
         .catch((err) => {
             console.error("Error adding task:", err);
         });
-
     }
 
     return (
@@ -80,8 +88,8 @@ const TodoItem = (props) => {
             <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
                 <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
                     <h1>Task List</h1>
-                    <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '12px', 
-                        color: 'black', border: '1px solid black', borderRadius: '40px', }}>
+                    <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '10px', 
+                        color: 'black', border: '1px solid black', borderRadius: '40px' }}>
                         {editing ? 'Cancel' : 'Edit'}
                     </Button>
                 </Card.Header>
@@ -92,7 +100,7 @@ const TodoItem = (props) => {
                              borderRadius: '20px'}}>
                                  {/* Edit Button (displayed in Edit Mode) */}
                                 {editing && (
-                                <button style={{ marginRight: '10px', height: '25px', width: '25px', backgroundColor: 'rgba(255, 0, 0, 0.6)', 
+                                <button onClick={() => handleDeleteTask(todo._id)} style={{ marginRight: '10px', height: '25px', width: '25px', backgroundColor: 'rgba(255, 0, 0, 0.6)', 
                                 border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', }}>
                                     -
                                 </button>
