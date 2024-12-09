@@ -9,6 +9,7 @@ const TodoItem = (props) => {
     const [todos, setTodos] = useState(props.todos);
     const [newTask, setNewTask] = useState('');
     const [openDialog, setOpenDialog] = useState(false);
+    const [editing, setEditing] = useState(false);
 
     // Sync todos state when props.todos changes
     useEffect(() => {
@@ -17,6 +18,10 @@ const TodoItem = (props) => {
         setTodos(sortedTodos);
         console.log("Tasks updated:", props.todos);
     }, [props.todos]);
+
+    const toggleEditMode = () => {
+        setEditing(!editing); // Toggle edit mode
+    };
 
     const handleCheckboxChange = (id, currentStatus) => {
         // Update the local state
@@ -51,7 +56,6 @@ const TodoItem = (props) => {
         if (newTask.trim() === '') {
             return;
         }
-
         const task = {
             task: newTask,
             completed: false, // Set completed to false by default
@@ -76,9 +80,9 @@ const TodoItem = (props) => {
             <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
                 <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
                     <h1>Task List</h1>
-                    <Button style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '12px', 
+                    <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '12px', 
                         color: 'black', border: '1px solid black', borderRadius: '40px', }}>
-                        Edit
+                        {editing ? 'Cancel' : 'Edit'}
                     </Button>
                 </Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
@@ -86,6 +90,13 @@ const TodoItem = (props) => {
                         {todos.map((todo) => (
                             <li key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
                              borderRadius: '20px'}}>
+                                 {/* Edit Button (displayed in Edit Mode) */}
+                                {editing && (
+                                <button style={{ marginRight: '10px', height: '25px', width: '25px', backgroundColor: 'rgba(255, 0, 0, 0.6)', 
+                                border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', }}>
+                                    -
+                                </button>
+                                )}
                                 {/* Checkbox for each task */}
                                 <input type="checkbox" checked={todo.completed}
                                     onChange={() => handleCheckboxChange(todo._id, todo.completed)}
