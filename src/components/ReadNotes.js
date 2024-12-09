@@ -12,6 +12,17 @@ const ReadNotes = () => {
   const [notes, setNotes] = useState([]); //react hook used to manage the state of the movies variable
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Reload notes after a deletion
+  const ReloadNotes = () => {
+    axios.get("http://localhost:4000/api/notes")
+      .then((response) => {
+        setNotes(response.data.notes); // Update notes after deletion
+      })
+      .catch((error) => {
+        console.log("Error reloading notes:", error);
+      });
+  };
+
   //react hook that fetches data
   useEffect(()=>{
     //Make axios (library that supports HTTP requests) GET request (HTTP request) to the provided URL to retrieve movie data
@@ -23,6 +34,7 @@ const ReadNotes = () => {
     .catch((error)=>{ // Handle any errors that occur during the API request
       console.log(error); //log them to console
     });
+    ReloadNotes();
   },[]);
 
   // Filter the notes based on the search query
@@ -47,7 +59,7 @@ const ReadNotes = () => {
           </Link>
         {/* Display the notes */}
         <Row>
-          <Notes myNotes={filteredNotes} />
+          <Notes myNotes={filteredNotes} ReloadData={ReloadNotes}/>
         </Row>
       </Container>
     </div>

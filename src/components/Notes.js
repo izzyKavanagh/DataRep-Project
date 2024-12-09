@@ -9,7 +9,7 @@ const Notes = (props) => {
         {props.myNotes.map((note) => (
           // Each note takes 1/3 of the row (col-4) with padding
           <div className="col-12 col-md-4 mb-4 px-3" key={note._id}>
-            <NoteItem mynote={note} />
+            <NoteItem mynote={note} ReloadNotes={props.ReloadData} />
           </div>
         ))}
       </div>
