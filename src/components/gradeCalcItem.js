@@ -1,8 +1,14 @@
 import Card from "react-bootstrap/Card";
 import { useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { Form, Modal, Button } from "react-bootstrap";
 
 const GradeItem = (props) => {
+
+  const [showModal, setShowModal] = useState(false); // Modal visibility
+  const [editModule, setEditModule] = useState(props.mygradecalcs.module); // Module state
+  const [editTitle, setEditTitle] = useState(props.mygradecalcs.title); // Title state
 
   const HandleDelete = () => {
     // API call to delete the grade by ID
@@ -12,6 +18,27 @@ const GradeItem = (props) => {
       props.RefreshGrades(); 
     })
     .catch((err) => console.error("Error deleting grade:", err));
+  };
+
+  const handleEdit = () => {
+    setShowModal(true); // Show the modal when Edit is clicked
+  };
+
+  const handleSave = () => {
+    const updatedGrade = {
+      ...props.mygradecalcs,
+      module: editModule,
+      title: editTitle,
+    };
+
+    axios
+      .put(`http://localhost:4000/api/gradecalcs/${props.mygradecalcs._id}`, updatedGrade)
+      .then((res) => {
+        console.log("Updated successfully:", res.data);
+        props.RefreshGrades(); // Refresh the grades
+        setShowModal(false); // Close the modal
+      })
+      .catch((err) => console.error("Error updating grade:", err));
   };
 
   useEffect(() => {
@@ -24,7 +51,7 @@ const GradeItem = (props) => {
         <Card.Header>{props.mygradecalcs.module}
           {/* Edit button */}
           <button
-            //onClick={handleEdit}
+            onClick={handleEdit}
             style={{
               position: "absolute",
               top: "4%",
@@ -56,6 +83,41 @@ const GradeItem = (props) => {
             </button>
         </Card.Footer>
       </Card>
+
+      {/* Edit Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Grade Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Module</Form.Label>
+              <Form.Control
+                type="text"
+                value={editModule}
+                onChange={(e) => setEditModule(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSave}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
     );
   };
