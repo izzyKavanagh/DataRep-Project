@@ -10,15 +10,23 @@ const CreateGradeCalc = ({ addGrade }) => {
     const [grade, setGrade] = useState('');
     const [weighting, setWeighting] = useState('');
 
+     // Function calculate result
+    const calculateResult = (grade, weighting) => {
+        return (grade * weighting) / 100;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Module: ${module}, Title: ${title}, Grade: ${grade}, Weighting: ${weighting}`);
-        const newGrade = { module: module, title: title, grade: grade, weighting: weighting };
+        const result = calculateResult(grade, weighting);
+
+        console.log(`Module: ${module}, Title: ${title}, Grade: ${grade}, Weighting: ${weighting}, Result: ${result}`);
+        const newGrade = { module: module, title: title, grade: grade, weighting: weighting, result: result };
 
         // Make a POST request to add data to the backend database
         axios.post('http://localhost:4000/api/gradecalcs', newGrade)
         .then((res) => {console.log(res.data); 
             addGrade(res.data);
+            calculateResult(grade, weighting);
             //reset form fields
             setModule('');
             setTitle('');
