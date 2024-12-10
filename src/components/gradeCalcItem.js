@@ -8,8 +8,8 @@ const GradeItem = (props) => {
       }, [props.mygradecalcs]); // Only run this effect when the mymovie prop changes
 
     return (
-      <div>
-        <Card>
+      <div style={{  width: "100%", padding: "10px" }}>
+        <Card style={{ borderRadius: "20px"}}>
           <Card.Header>{props.mygradecalcs.module}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
