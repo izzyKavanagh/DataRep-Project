@@ -5,6 +5,12 @@ import { Button, Form } from "react-bootstrap";
 
 const CreateGradeCalc = () => {
 
+    // useState to manage the title, year, and poster values for the movie
+    const [module, setModule] = useState('');
+    const [title, setTitle] = useState('');
+    const [grade, setGrade] = useState('');
+    const [weighting, setWeighting] = useState('');
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`Module: ${module}, Title: ${title}, Grade: ${grade}, Weighting: ${weighting}`);
@@ -26,24 +32,28 @@ const CreateGradeCalc = () => {
                 <input type="text"
                     className="form-control"
                     value={module} //input bound to title state
+                    onChange={(e) => { setModule(e.target.value) }}
                 />
                 {/* Input for the movie year */}
                 <label>Enter Title: </label>
                 <input type="text"
                     className="form-control"
                     value={title}  //input bound to year state
+                    onChange={(e) => { setTitle(e.target.value) }}
                 />
                 {/* Input for the movie poster */}
                 <label>Enter Grade: </label>
                 <input type="number"
                     className="form-control"
                     value={grade}  //input bound to poster state
+                    onChange={(e) => { setGrade(e.target.value) }}
                 />
                 {/* Input for the movie poster */}
                 <label>Enter Weighting: </label>
                 <input type="Number"
                     className="form-control"
                     value={weighting}  //input bound to poster state
+                    onChange={(e) => { setWeighting(e.target.value) }}
                 />
             </div>
             {/* Submit button to trigger the form submission */}
