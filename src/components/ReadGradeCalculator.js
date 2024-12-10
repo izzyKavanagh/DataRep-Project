@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Grades from "./GradeCalc";
+import CreateGradeCalc from "./CreateGradeCalc";
 
 const ReadGradeCalculator = () => {
   const [gradecalcs, setGrades] = useState([]); // State to store grades
@@ -19,9 +20,14 @@ const ReadGradeCalculator = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Grade Calculator</h1>
-        <Grades myGrades={gradecalcs} />
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      {/* Create Grade Calculator form */}
+      <CreateGradeCalc />
+
+        <div style={{ width: "60%" }}>
+        <h1>Grade Calculator</h1>
+            <Grades myGrades={gradecalcs} />
+        </div>
     </div>
   );
 };

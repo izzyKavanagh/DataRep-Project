@@ -17,7 +17,7 @@ const CreateGradeCalc = () => {
         const newGrade = { module: module, title: title, grade: grade, weighting: weighting };
 
         // Make a POST request to add data to the backend database
-        axios.post('http://localhost:4000/api/gradecalcs', movie)
+        axios.post('http://localhost:4000/api/gradecalcs', newGrade)
         .then((res) => console.log(res.data)) 
         .catch((err) => console.log(err.data)); 
 
