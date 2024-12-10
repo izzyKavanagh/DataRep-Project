@@ -5,6 +5,18 @@ import { Button, Form } from "react-bootstrap";
 
 const CreateGradeCalc = () => {
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`Module: ${module}, Title: ${title}, Grade: ${grade}, Weighting: ${weighting}`);
+        const newGrade = { module: module, title: title, grade: grade, weighting: weighting };
+
+        // Make a POST request to add data to the backend database
+        axios.post('http://localhost:4000/api/gradecalcs', movie)
+        .then((res) => console.log(res.data)) 
+        .catch((err) => console.log(err.data)); 
+
+    };
+  
     return (
         <form onSubmit={handleSubmit}>
             {/* Input fields for the movie details */}
