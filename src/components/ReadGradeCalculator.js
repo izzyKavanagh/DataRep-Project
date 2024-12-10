@@ -6,6 +6,12 @@ import CreateGradeCalc from "./CreateGradeCalc";
 const ReadGradeCalculator = () => {
     const [gradecalcs, setGrades] = useState([]); // State to store grades
 
+    // Function to fetch the updated grades
+    const RefreshGrades = () => {
+        axios.get("http://localhost:4000/api/gradecalcs")
+        .then((response) => setGrades(response.data.gradecalcs))
+        .catch((error) => console.error("Error refreshing grades:", error));
+    };
   // Fetch grades from the server
     const fetchGrades = () => {
         axios.get("http://localhost:4000/api/gradecalcs")
@@ -20,6 +26,7 @@ const ReadGradeCalculator = () => {
 
     useEffect(() => {
         fetchGrades();
+        RefreshGrades();
     }, []);
 
     const addGrade = (newGrade) => {
@@ -36,7 +43,7 @@ const ReadGradeCalculator = () => {
 
         <div style={styles.gradeContainer}>
             <h1>Grades</h1>
-            <Grades myGrades={gradecalcs} />
+            <Grades myGrades={gradecalcs} OnDelete={RefreshGrades} />
         </div>
     </div>
   );
