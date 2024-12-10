@@ -21,7 +21,24 @@ const GradeItem = (props) => {
   return (
     <div style={{  width: "100%", padding: "10px" }}>
       <Card style={{ borderRadius: "20px"}}>
-        <Card.Header>{props.mygradecalcs.module}</Card.Header>
+        <Card.Header>{props.mygradecalcs.module}
+          {/* Edit button */}
+          <button
+            //onClick={handleEdit}
+            style={{
+              position: "absolute",
+              top: "4%",
+              backgroundColor: "rgba(128, 128, 128, 0.8)",
+              right: "15px",
+              border: "none",
+              borderRadius: "20px",
+              fontSize: "10px", // Small font
+              padding: "3px 8px", // Compact size
+              cursor: "pointer",
+            }}>
+            Edit
+          </button>
+        </Card.Header>
         <Card.Body>
         <blockquote className="blockquote mb-0">
             <p>Title: {props.mygradecalcs.title}</p>
