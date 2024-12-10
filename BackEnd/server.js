@@ -51,6 +51,19 @@ const noteSchema = new mongoose.Schema({
 
 const NoteModel = mongoose.model('Note', noteSchema);
 
+const gradeCalcSchema = new mongoose.Schema({
+    grade: {
+        type: Number,  // Store grade as a number (e.g., 85 for 85%)
+        required: true
+    },
+    weighting: {
+        type: Number,  // Store weighting as a number (e.g., 0.3 for 30%)
+        required: true
+    }
+});
+
+const GradeCalcModel = mongoose.model('GradeCalc', gradeCalcSchema);
+
 app.get('/api/modules', async(req, res) => {
     const modules = await moduleModel.find({});
     res.json({modules});
