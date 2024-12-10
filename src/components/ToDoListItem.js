@@ -87,10 +87,10 @@ const TodoItem = (props) => {
             {/* Single card containing all tasks */}
             <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
                 <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
-                    <h1>Task List</h1>
+                    <h1>To-Do List</h1>
                     <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '10px', 
                         color: 'black', border: '1px solid black', borderRadius: '40px' }}>
-                        {editing ? 'Cancel' : 'Edit'}
+                        {editing ? 'Save' : 'Edit'}
                     </Button>
                 </Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
