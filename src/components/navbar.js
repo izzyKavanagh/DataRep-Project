@@ -12,6 +12,7 @@ const NavigationBar = () => {
           <Nav.Link href="/home">MainPage</Nav.Link>
           <Nav.Link href="/todolist">To-Do List</Nav.Link>
           <Nav.Link href="/notes">Notes</Nav.Link>
+          <Nav.Link href="/gradecalcs">Grade Calculator</Nav.Link>
           {/*<Nav.Link href="/createModule">Grade Tracker</Nav.Link> */}
           {/*<Nav.Link href="/read">GradeTracker</Nav.Link> */}
           {/* <Nav.Link href="/timetables">Timetables</Nav.Link> */}

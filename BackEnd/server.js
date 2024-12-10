@@ -179,19 +179,19 @@ app.delete('/api/notes/:id', async (req, res) => {
 });
 
 // Fetch all grade calculation entries
-app.get('/api/gradecalc', async (req, res) => {
-    const grades = await GradeCalcModel.find({});
-    res.json({ grades });
+app.get('/api/gradecalcs', async (req, res) => {
+    const gradecalcs = await GradeCalcModel.find({});
+    res.json({ gradecalcs });
 });
 
 // Fetch a single grade entry by ID
-app.get('/api/gradecalc/:id', async (req, res) => {
-    const grade = await GradeCalcModel.findById(req.params.id);
-    res.json(grade);
+app.get('/api/gradecalcs/:id', async (req, res) => {
+    const gradecalcs = await GradeCalcModel.findById(req.params.id);
+    res.json(gradecalcs);
 });
 
 // Create a new grade calculation entry
-app.post('/api/gradecalc', async (req, res) => {
+app.post('/api/gradecalcs', async (req, res) => {
     const { grade, weighting, result } = req.body;
 
     const newGradeCalc = new GradeCalcModel({ grade, weighting, result });
@@ -200,19 +200,19 @@ app.post('/api/gradecalc', async (req, res) => {
     await newGradeCalc.save();
 
     // Respond with a success message and the created entry
-    res.status(201).json({ message: 'Grade Calculation created successfully', gradeCalc: newGradeCalc });
+    res.status(201).json({ message: 'Grade Calculation created successfully', gradecalc: newGradeCalc });
 });
 
 // Update an existing grade calculation entry
-app.put('/api/gradecalc/:id', async (req, res) => {
+app.put('/api/gradecalcs/:id', async (req, res) => {
     const { grade, weighting, result } = req.body;
 
     const updatedGradeCalc = await GradeCalcModel.findByIdAndUpdate(req.params.id, { grade, weighting, result }, { new: true });
-    res.json({ message: 'Grade Calculation updated successfully', gradeCalc: updatedGradeCalc });
+    res.json({ message: 'Grade Calculation updated successfully', gradecalc: updatedGradeCalc });
 });
 
 // Delete a grade calculation entry
-app.delete('/api/gradecalc/:id', async (req, res) => {
+app.delete('/api/gradecalcs/:id', async (req, res) => {
     await GradeCalcModel.findByIdAndDelete(req.params.id);
     res.json({ message: 'Grade Calculation entry deleted successfully' });
 });

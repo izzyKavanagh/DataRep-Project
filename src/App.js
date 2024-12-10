@@ -11,6 +11,7 @@ import ReadToDoList from './components/ReadToDoList.js';
 import ReadNotes from './components/ReadNotes.js';
 import CreateNote from './components/CreateNote.js';
 import EditNote from './components/EditNote.js';
+import ReadGradeCalculator from './components/ReadGradeCalculator.js';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/notes" element={<ReadNotes />} />
         <Route path="/createNote" element={<CreateNote />} />
         <Route path="/editNote/:id" element={<EditNote />} />
+        <Route path="/gradecalcs" element={<ReadGradeCalculator />} />
       </Routes>
     </Router>
   );
