@@ -13,8 +13,8 @@ const CreateTimetable = () => {
         const timetable = { subject, startTime, endTime };
     
         axios.post('http://localhost:4000/api/timetables', timetable)
-        .then((res) => console.log(res.data)) // Log success response
-        .catch((err) => console.log(err.data)); // Log error response if request fails
+        .then((res) => console.log(res.data)) 
+        .catch((err) => console.log(err.data)); 
     }
 
     return (

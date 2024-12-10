@@ -1,9 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import { Button, Form } from "react-bootstrap";
 
-const CreateGradeCalc = () => {
+const CreateGradeCalc = ({ addGrade }) => {
 
     // useState to manage the title, year, and poster values for the movie
     const [module, setModule] = useState('');
@@ -18,7 +17,13 @@ const CreateGradeCalc = () => {
 
         // Make a POST request to add data to the backend database
         axios.post('http://localhost:4000/api/gradecalcs', newGrade)
-        .then((res) => console.log(res.data)) 
+        .then((res) => {console.log(res.data); 
+            addGrade(res.data);
+            //reset form fields
+            setModule('');
+            setTitle('');
+            setGrade('');
+            setWeighting('');}) 
         .catch((err) => console.log(err.data)); 
 
     };

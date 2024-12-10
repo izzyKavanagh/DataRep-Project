@@ -4,27 +4,34 @@ import Grades from "./GradeCalc";
 import CreateGradeCalc from "./CreateGradeCalc";
 
 const ReadGradeCalculator = () => {
-  const [gradecalcs, setGrades] = useState([]); // State to store grades
+    const [gradecalcs, setGrades] = useState([]); // State to store grades
 
   // Fetch grades from the server
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/gradecalcs")
-      .then((response) => {
-        setGrades(response.data.gradecalcs); // Assuming API returns an object with gradeCalcs array
-        console.log(response.data);//log response to console
-      })
-      .catch((error) => {
-        console.error("Error fetching grades:", error);
-      });
-  }, []);
+    const fetchGrades = () => {
+        axios.get("http://localhost:4000/api/gradecalcs")
+        .then((response) => {
+            setGrades(response.data.gradecalcs); // Assuming API returns an object with gradeCalcs array
+            console.log(response.data);//log response to console
+        })
+        .catch((error) => {
+            console.error("Error fetching grades:", error);
+        });
+    };
+
+    useEffect(() => {
+        fetchGrades();
+    }, []);
+
+    const addGrade = (newGrade) => {
+        fetchGrades(); // Re-fetch the grades after adding a new grade
+    };
 
   return (
     <div style={styles.pageContainer}>
         {/* Create Grade Calculator form */}
         <div style={styles.formContainer}>
             <h1 style={styles.formTitle} >Grade Calculator</h1>
-            <CreateGradeCalc />
+            <CreateGradeCalc addGrade={addGrade}/>
         </div>
 
         <div style={styles.gradeContainer}>
