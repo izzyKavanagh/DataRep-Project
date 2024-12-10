@@ -52,6 +52,8 @@ const noteSchema = new mongoose.Schema({
 const NoteModel = mongoose.model('Note', noteSchema);
 
 const gradeCalcSchema = new mongoose.Schema({
+    module: String,
+    title : String,
     grade: Number,
     weighting: Number,
     result: Number
@@ -192,9 +194,9 @@ app.get('/api/gradecalcs/:id', async (req, res) => {
 
 // Create a new grade calculation entry
 app.post('/api/gradecalcs', async (req, res) => {
-    const { grade, weighting, result } = req.body;
+    const { module, title, grade, weighting, result } = req.body;
 
-    const newGradeCalc = new GradeCalcModel({ grade, weighting, result });
+    const newGradeCalc = new GradeCalcModel({ module, title, grade, weighting, result });
 
     // Save the new grade calculation entry to the database
     await newGradeCalc.save();
@@ -205,9 +207,9 @@ app.post('/api/gradecalcs', async (req, res) => {
 
 // Update an existing grade calculation entry
 app.put('/api/gradecalcs/:id', async (req, res) => {
-    const { grade, weighting, result } = req.body;
+    const { module, title, grade, weighting, result } = req.body;
 
-    const updatedGradeCalc = await GradeCalcModel.findByIdAndUpdate(req.params.id, { grade, weighting, result }, { new: true });
+    const updatedGradeCalc = await GradeCalcModel.findByIdAndUpdate(req.params.id, { module, title, grade, weighting, result }, { new: true });
     res.json({ message: 'Grade Calculation updated successfully', gradecalc: updatedGradeCalc });
 });
 

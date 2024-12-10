@@ -10,11 +10,13 @@ const GradeItem = (props) => {
     return (
       <div>
         <Card>
-          <Card.Header>Grade Calculator</Card.Header>
+          <Card.Header>{props.mygradecalcs.module}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <p>Grade: {props.mygradecalcs.grade}%</p>
-              <p>Weighting: {props.mygradecalcs.weighting}%</p>
+                <p>Title: {props.mygradecalcs.title}</p>
+                <p>Grade: {props.mygradecalcs.grade}%</p>
+                <p>Weighting: {props.mygradecalcs.weighting}%</p>
+                <p>Result: {props.mygradecalcs.result}%</p>
             </blockquote>
           </Card.Body>
         </Card>
