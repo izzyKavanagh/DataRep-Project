@@ -6,9 +6,11 @@ import { Form, Modal, Button } from "react-bootstrap";
 
 const GradeItem = (props) => {
 
-  const [showModal, setShowModal] = useState(false); // Modal visibility
-  const [editModule, setEditModule] = useState(props.mygradecalcs.module); // Module state
-  const [editTitle, setEditTitle] = useState(props.mygradecalcs.title); // Title state
+  const [showModal, setShowModal] = useState(false); 
+  const [editModule, setEditModule] = useState(props.mygradecalcs.module);
+  const [editTitle, setEditTitle] = useState(props.mygradecalcs.title); 
+  const [editGrade, setEditGrade] = useState(props.mygradecalcs.grade); 
+  const [editWeighting, setEditWeighting] = useState(props.mygradecalcs.weighting);
 
   const HandleDelete = () => {
     // API call to delete the grade by ID
@@ -25,10 +27,16 @@ const GradeItem = (props) => {
   };
 
   const handleSave = () => {
+
+    const updatedResult = (editGrade * editWeighting)/100; 
+
     const updatedGrade = {
       ...props.mygradecalcs,
       module: editModule,
       title: editTitle,
+      grade: editGrade,
+      weighting: editWeighting,
+      result: updatedResult
     };
 
     axios
@@ -105,6 +113,22 @@ const GradeItem = (props) => {
                 type="text"
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Grade</Form.Label>
+              <Form.Control
+                type="number"
+                value={editGrade}
+                onChange={(e) => setEditGrade(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Weighting</Form.Label>
+              <Form.Control
+                type="number"
+                value={editWeighting}
+                onChange={(e) => setEditWeighting(e.target.value)}
               />
             </Form.Group>
           </Form>
