@@ -42,7 +42,7 @@ const ReadGradeCalculator = () => {
         </div>
 
         <div style={styles.gradeContainer}>
-            <h1>Grades</h1>
+            <h1>Saved Grades</h1>
             <Grades myGrades={gradecalcs} OnDelete={RefreshGrades} />
         </div>
     </div>

@@ -38,42 +38,60 @@ const CreateGradeCalc = ({ addGrade }) => {
   
     return (
         <Card style={{ width: "300px" }}>
-            <Card.Header>Create New Grade</Card.Header>
-            <Card.Body>
+            <Card.Header style={{ textAlign: "center", fontWeight: "bold" }} >
+                Calculate Grade Contribution to Course Total
+            </Card.Header>
+            <Card.Body style={{padding: "40px"}}>
                 <form onSubmit={handleSubmit}>
                     {/* Input fields for the movie details */}
-                    <div className="form-group">
+                    <div className="form-group"  style={{ marginBottom: "15px" }}>
                         {/* Input for the movie title */}
-                        <label>Enter Module: </label>
+                        <label style={{ marginBottom: "5px"}}>Enter Module: </label>
                         <input type="text"
                             className="form-control"
                             value={module} //input bound to title state
                             onChange={(e) => { setModule(e.target.value) }}
-                        />
+                            required/>
+                    </div>
+                    <div className="form-group" style={{ marginBottom: "15px" }}>
                         {/* Input for the movie year */}
-                        <label>Enter Title: </label>
+                        <label style={{ marginBottom: "5px"}}>Enter Title: </label>
                         <input type="text"
                             className="form-control"
                             value={title}  //input bound to year state
                             onChange={(e) => { setTitle(e.target.value) }}
                         />
-                        {/* Input for the movie poster */}
-                        <label>Enter Grade: </label>
-                        <input type="number"
-                            className="form-control"
-                            value={grade}  //input bound to poster state
-                            onChange={(e) => { setGrade(e.target.value) }}
-                        />
-                        {/* Input for the movie poster */}
-                        <label>Enter Weighting: </label>
-                        <input type="Number"
-                            className="form-control"
-                            value={weighting}  //input bound to poster state
-                            onChange={(e) => { setWeighting(e.target.value) }}
-                        />
                     </div>
+                    <div className="form-group" style={{ marginBottom: "15px" }}>
+                        {/* Input for the movie poster */}
+                        <label style={{ marginBottom: "5px"}}>Enter Grade: </label>
+                        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                            <input type="number"
+                                className="form-control"
+                                value={grade}  //input bound to poster state
+                                onChange={(e) => { setGrade(e.target.value) }}
+                                style={{ width: "70px" }}
+                            />
+                            <span>%</span>
+                        </div>
+                    </div>
+                    <div className="form-group" style={{ marginBottom: "40px" }}>
+                        {/* Input for the movie poster */}
+                        <label style={{ marginBottom: "5px"}} >Enter Weighting: </label>
+                        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                            <input type="Number"
+                                className="form-control"
+                                value={weighting}  //input bound to poster state
+                                onChange={(e) => { setWeighting(e.target.value) }}
+                                style={{ width: "70px" }}
+                            />
+                            <span>%</span>
+                        </div>
+                    </div >
                     {/* Submit button to trigger the form submission */}
-                    <input type="submit" value="Save Grade" />
+                    <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+                        <input type="submit" value="Save Grade" style={{ border: "1px solid black", borderRadius: "20px", margin: "10px 20px", padding: "10px"}}/>
+                    </div>
                 </form>
             </Card.Body>
         </Card>
