@@ -94,10 +94,17 @@ const TodoItem = (props) => {
                     </Button>
                 </Card.Header>
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-                    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                    <ul style={{ listStyleType: 'none', padding: "20px", margin: 0 }}>
                         {todos.map((todo) => (
                             <li key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
                              borderRadius: '20px'}}>
+                                {/* Edit Button (displayed in Edit Mode) */}
+                                {editing && (
+                                    <button onClick={() => {}} style={{ marginRight: '10px', height: '25px', width: '30px', backgroundColor: 'transparent', 
+                                        border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', fontSize: "11px" }} >
+                                        edit
+                                    </button>
+                                )}
                                  {/* Edit Button (displayed in Edit Mode) */}
                                 {editing && (
                                 <button onClick={() => handleDeleteTask(todo._id)} style={{ marginRight: '10px', height: '25px', width: '25px', backgroundColor: 'rgba(255, 0, 0, 0.6)', 
