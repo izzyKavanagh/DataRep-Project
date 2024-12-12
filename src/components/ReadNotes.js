@@ -43,17 +43,17 @@ const ReadNotes = () => {
   );
 
   return (
-    <div className='background text'>
+    <div>
       {/* Container to hold the search bar and notes */}
       <Container>
         <Row className="mb-4">
           <Col>
             {/* Search bar */}
-            <Form.Control className="search-bar" type="text" style={{ marginTop: '20px' }} placeholder="Search Your Notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            <Form.Control className="search-bar card-formatting" type="text" style={{ marginTop: '20px' }} placeholder="Search Your Notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </Col>
         </Row>
           {/* Create New Note Button */}
-          <Link to="/createNote" className="btn btn-primary add-button" style={{ padding: '10px 15px', fontSize: '16px', 
+          <Link to="/createNote" className="btn btn-primary add-button card-formatting" style={{ padding: '10px 15px', fontSize: '16px', 
             marginBottom: '20px', borderRadius: '50px', display: 'inline-block' }}>
               New Note +
           </Link>

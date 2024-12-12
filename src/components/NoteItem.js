@@ -56,7 +56,7 @@ const NoteItem = (props) => {
   return (
       <div>
           {/* Bootstrap Card component to display movie information */}
-          <Card onClick={handleCardClick} style={{ cursor: 'pointer' }}>
+          <Card className='card-formatting' onClick={handleCardClick} style={{ cursor: 'pointer' }}>
               {/* Card Header displays movie title */}
               <Card.Header className='card-header' ><h4>{props.mynote.title}</h4></Card.Header>
 
@@ -70,8 +70,8 @@ const NoteItem = (props) => {
 
               <Card.Footer className="card-footer">
                 <div style={{ fontSize: '10PX', display: 'flex', justifyContent: 'space-between' }}>
-                    <span><strong>Created:</strong> {formatDate(props.mynote.dateCreated)}</span>
-                    <span><strong>Edited:</strong> {formatDate(props.mynote.dateEdited)}</span>
+                  <span><strong>Created:</strong> {formatDate(props.mynote.dateCreated)}</span>
+                  <span><strong>Edited:</strong> {formatDate(props.mynote.dateEdited)}</span>
                 </div>
             </Card.Footer>
 
