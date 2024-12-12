@@ -34,7 +34,7 @@ const ReadGradeCalculator = () => {
     };
 
   return (
-    <div className="background text" style={styles.pageContainer}>
+    <div style={styles.pageContainer}>
         {/* Create Grade Calculator form */}
         <div style={styles.formContainer}>
             <h1 style={styles.formTitle} >Grade Calculator</h1>
@@ -65,7 +65,7 @@ const styles = {
         flexDirection: "column", 
         justifyContent: "flex-start", 
         alignItems: "center", 
-        maxWidth: "500px", 
+        maxWidth: "500px",
     },
     gradeContainer: {
       flexBasis: "50%", 
@@ -75,13 +75,16 @@ const styles = {
       padding: "20px", 
       maxHeight: "550px",
       overflowY: "scroll", 
-      backgroundColor: "rgba(211, 211, 211, 0.7)", 
+      backgroundColor: "rgba(110, 109, 109, 0.7)", 
       borderRadius: "20px", 
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
+      marginTop: "65px",
+      border: "1px solid white"
     },
     formTitle: {
         textAlign: "center", 
         marginBottom: "20px",
+        color: "rgb(50, 168, 82)",
     },
 }
 

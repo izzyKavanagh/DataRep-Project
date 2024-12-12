@@ -55,10 +55,11 @@ const GradeItem = (props) => {
 
   return (
     <div style={{  width: "100%", padding: "10px" }}>
-      <Card>
+      <Card className="card-formatting">
         <Card.Header className="card-header" ><h4>{props.mygradecalcs.module}</h4>
           {/* Edit button */}
           <button
+            className="delete-button"
             onClick={handleEdit}
             style={{
               position: "absolute",
@@ -75,18 +76,19 @@ const GradeItem = (props) => {
           </button>
         </Card.Header>
         <Card.Body className="card-background" >
-        <blockquote className="blockquote mb-0">
+        <blockquote className="blockquote mb-0 text">
             <p>Title: {props.mygradecalcs.title}</p>
             <p>Grade: {props.mygradecalcs.grade}%</p>
             <p>Weighting: {props.mygradecalcs.weighting}%</p>
-            <p>Contribution to Course Total: {props.mygradecalcs.result}%</p>
+            <p>Contribution to Module Total: {props.mygradecalcs.result}%</p>
         </blockquote>
         </Card.Body>
         <Card.Footer style={{ position: "relative" }}>
             {/* Delete button in the bottom-right corner */}
             <button onClick={HandleDelete}
+            className="delete-button"
             style={{border: "1px solid black", borderRadius: "20px", cursor: "pointer", 
-                fontSize: "12px", padding: "3px 8px", backgroundColor: "rgba(255, 0, 0, 0.6)"}}>
+                fontSize: "12px", padding: "3px 8px", backgroundColor: "rgba(207, 207, 207, 0.6)"}}>
             Delete
             </button>
         </Card.Footer>

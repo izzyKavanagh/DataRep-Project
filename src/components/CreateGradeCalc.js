@@ -37,27 +37,27 @@ const CreateGradeCalc = ({ addGrade }) => {
     };
   
     return (
-        <Card style={{ width: "300px" }}>
-            <Card.Header className="card-header" style={{ textAlign: "center", fontWeight: "bold" }} >
-                Calculate Grade Contribution to Course Total
+        <Card className='card-formatting' style={{ width: "300px" }}>
+            <Card.Header className="card-header" style={{ color: "white", textAlign: "center", fontWeight: "bold" }} >
+                Calculate Grade Contribution to Module Total
             </Card.Header>
             <Card.Body className="card-background" style={{padding: "40px"}}>
-                <form onSubmit={handleSubmit}>
+                <form className="text" onSubmit={handleSubmit}>
                     {/* Input fields for the movie details */}
                     <div className="form-group"  style={{ marginBottom: "15px" }}>
                         {/* Input for the movie title */}
                         <label style={{ marginBottom: "5px"}}>Enter Module: </label>
-                        <input type="text"
-                            className="form-control  search-bar"
+                        <input type="text" placeholder="..."
+                            className="form-control search-bar input-box"
                             value={module} //input bound to title state
                             onChange={(e) => { setModule(e.target.value) }}
-                            required/>
+                            required />
                     </div>
                     <div className="form-group" style={{ marginBottom: "15px" }}>
                         {/* Input for the movie year */}
                         <label style={{ marginBottom: "5px"}}>Enter Title: </label>
-                        <input type="text"
-                            className="form-control  search-bar"
+                        <input type="text" placeholder="..."
+                            className="form-control search-bar input-box"
                             value={title}  //input bound to year state
                             onChange={(e) => { setTitle(e.target.value) }}
                         />
@@ -66,8 +66,8 @@ const CreateGradeCalc = ({ addGrade }) => {
                         {/* Input for the movie poster */}
                         <label style={{ marginBottom: "5px"}}>Enter Grade: </label>
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                            <input type="number"
-                                className="form-control  search-bar"
+                            <input type="number" placeholder="..."
+                                className="form-control search-bar input-box"
                                 value={grade}  //input bound to poster state
                                 onChange={(e) => { setGrade(e.target.value) }}
                                 style={{ width: "70px" }}
@@ -79,8 +79,8 @@ const CreateGradeCalc = ({ addGrade }) => {
                         {/* Input for the movie poster */}
                         <label style={{ marginBottom: "5px"}} >Enter Weighting: </label>
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                            <input type="Number"
-                                className="form-control search-bar"
+                            <input type="Number" placeholder="..."
+                                className="form-control search-bar input-box"
                                 value={weighting}  //input bound to poster state
                                 onChange={(e) => { setWeighting(e.target.value) }}
                                 style={{ width: "70px" }}
@@ -90,7 +90,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                     </div >
                     {/* Submit button to trigger the form submission */}
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
-                        <input className="add-button" type="submit" value="Save Grade" style={{ border:"1.5px solid", borderRadius: "20px", margin: "10px 20px", padding: "10px"}}/>
+                        <input className="add-button input-box delete-button" type="submit" value="Save Grade" style={{borderRadius: "20px", margin: "10px 20px", padding: "10px"}}/>
                     </div>
                 </form>
             </Card.Body>

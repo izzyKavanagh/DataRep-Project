@@ -1,7 +1,7 @@
 :root {
   --bg-dark: rgb(34, 34, 34);
   --text-light: white;
-  --card-bg: rgb(97, 97, 97);
+  --card-bg: rgb(71, 71, 71);
   --card-header-bg: rgb(48, 48, 48);
   --card-header-text: rgb(50, 168, 82);
   --add-button-bg: rgb(50, 168, 82);
@@ -15,20 +15,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-dark);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.background {
-  background-color: var(--bg-dark);
-}
-
 .text {
   color: var(--text-light);
 }
 
+.card-formatting {
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+}
 .card-background {
   background-color: var(--card-bg);
   box-shadow: 0 4px 8px rgba(166, 165, 165, 0.2);
@@ -48,7 +51,16 @@ code {
   border-color: var(--card-header-bg);
 }
 
+.delete-button {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
 .search-bar{
   background-color: var(--input-field-background);
+}
+
+.input-box {
+  border: 2px solid black;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
 }
 
