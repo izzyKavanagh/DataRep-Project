@@ -36,13 +36,13 @@ const ReadGradeCalculator = () => {
   return (
     <div className="background text" style={styles.pageContainer}>
         {/* Create Grade Calculator form */}
-        <div  style={styles.formContainer}>
+        <div style={styles.formContainer}>
             <h1 style={styles.formTitle} >Grade Calculator</h1>
             <CreateGradeCalc addGrade={addGrade}/>
         </div>
 
         <div style={styles.gradeContainer}>
-            <h1>Saved Grades</h1>
+            <h1 style={{color:'black'}}>Saved Grades</h1>
             <Grades myGrades={gradecalcs} OnDelete={RefreshGrades} />
         </div>
     </div>

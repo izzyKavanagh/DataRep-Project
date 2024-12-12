@@ -89,7 +89,7 @@ const TodoItem = (props) => {
                 <Card.Header className='card-header text'>
                     <h1>To-Do List</h1>
                     <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '10px', 
-                        color: 'black', border: '1px solid black', borderRadius: '40px' }}>
+                        color: 'black', border: '1px solid black', borderRadius: '40px', backgroundColor:'grey' }}>
                         {editing ? 'Save' : 'Edit'}
                     </Button>
                 </Card.Header>
@@ -102,7 +102,7 @@ const TodoItem = (props) => {
                                 {editing && (
                                     <button onClick={() => {}} style={{ marginRight: '10px', height: '25px', width: '30px', backgroundColor: 'white', 
                                         border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', fontSize: "11px" }} >
-                                        edit
+                                        Edit
                                     </button>
                                 )}
                                  {/* Edit Button (displayed in Edit Mode) */}
@@ -128,7 +128,7 @@ const TodoItem = (props) => {
                 <Card.Footer className='card-header' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
                     height: '50px'}}>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="secondary" aria-label="add" sx={{ boxShadow: 'none' }} onClick={handleOpenDialog}>
+                        <Fab size="small" aria-label="add" sx={{ boxShadow: 'none', backgroundColor: 'rgb(50, 168, 82)' }} onClick={handleOpenDialog}>
                             <AddIcon/>
                         </Fab>
                     </Box>

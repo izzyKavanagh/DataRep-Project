@@ -58,17 +58,17 @@ const NoteItem = (props) => {
           {/* Bootstrap Card component to display movie information */}
           <Card onClick={handleCardClick} style={{ cursor: 'pointer' }}>
               {/* Card Header displays movie title */}
-              <Card.Header><h3>{props.mynote.title}</h3></Card.Header>
+              <Card.Header className='card-header' ><h4>{props.mynote.title}</h4></Card.Header>
 
               {/* Card Body contains movie information */} 
-              <Card.Body style={{ maxHeight: '150px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+              <Card.Body className='card-background text' style={{ maxHeight: '150px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                   {/* Blockquote used to add movie poster and year */}
                   <blockquote className="blockquote mb-0">
                     <p dangerouslySetInnerHTML={{ __html: props.mynote.noteBody }} style={{ fontSize: '13px', lineHeight: '1' }}/>
                   </blockquote>
               </Card.Body>
 
-              <Card.Footer className="text-muted">
+              <Card.Footer className="card-footer">
                 <div style={{ fontSize: '10PX', display: 'flex', justifyContent: 'space-between' }}>
                     <span><strong>Created:</strong> {formatDate(props.mynote.dateCreated)}</span>
                     <span><strong>Edited:</strong> {formatDate(props.mynote.dateEdited)}</span>

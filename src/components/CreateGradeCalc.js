@@ -38,17 +38,17 @@ const CreateGradeCalc = ({ addGrade }) => {
   
     return (
         <Card style={{ width: "300px" }}>
-            <Card.Header style={{ textAlign: "center", fontWeight: "bold" }} >
+            <Card.Header className="card-header" style={{ textAlign: "center", fontWeight: "bold" }} >
                 Calculate Grade Contribution to Course Total
             </Card.Header>
-            <Card.Body style={{padding: "40px"}}>
+            <Card.Body className="card-background" style={{padding: "40px"}}>
                 <form onSubmit={handleSubmit}>
                     {/* Input fields for the movie details */}
                     <div className="form-group"  style={{ marginBottom: "15px" }}>
                         {/* Input for the movie title */}
                         <label style={{ marginBottom: "5px"}}>Enter Module: </label>
                         <input type="text"
-                            className="form-control"
+                            className="form-control  search-bar"
                             value={module} //input bound to title state
                             onChange={(e) => { setModule(e.target.value) }}
                             required/>
@@ -57,7 +57,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         {/* Input for the movie year */}
                         <label style={{ marginBottom: "5px"}}>Enter Title: </label>
                         <input type="text"
-                            className="form-control"
+                            className="form-control  search-bar"
                             value={title}  //input bound to year state
                             onChange={(e) => { setTitle(e.target.value) }}
                         />
@@ -67,7 +67,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <label style={{ marginBottom: "5px"}}>Enter Grade: </label>
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                             <input type="number"
-                                className="form-control"
+                                className="form-control  search-bar"
                                 value={grade}  //input bound to poster state
                                 onChange={(e) => { setGrade(e.target.value) }}
                                 style={{ width: "70px" }}
@@ -80,7 +80,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <label style={{ marginBottom: "5px"}} >Enter Weighting: </label>
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                             <input type="Number"
-                                className="form-control"
+                                className="form-control search-bar"
                                 value={weighting}  //input bound to poster state
                                 onChange={(e) => { setWeighting(e.target.value) }}
                                 style={{ width: "70px" }}
@@ -90,7 +90,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                     </div >
                     {/* Submit button to trigger the form submission */}
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
-                        <input type="submit" value="Save Grade" style={{ border: "1px solid black", borderRadius: "20px", margin: "10px 20px", padding: "10px"}}/>
+                        <input className="add-button" type="submit" value="Save Grade" style={{ border:"1.5px solid", borderRadius: "20px", margin: "10px 20px", padding: "10px"}}/>
                     </div>
                 </form>
             </Card.Body>

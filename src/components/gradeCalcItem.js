@@ -55,8 +55,8 @@ const GradeItem = (props) => {
 
   return (
     <div style={{  width: "100%", padding: "10px" }}>
-      <Card style={{ borderRadius: "20px"}}>
-        <Card.Header><h4>{props.mygradecalcs.module}</h4>
+      <Card>
+        <Card.Header className="card-header" ><h4>{props.mygradecalcs.module}</h4>
           {/* Edit button */}
           <button
             onClick={handleEdit}
@@ -74,7 +74,7 @@ const GradeItem = (props) => {
             Edit
           </button>
         </Card.Header>
-        <Card.Body>
+        <Card.Body className="card-background" >
         <blockquote className="blockquote mb-0">
             <p>Title: {props.mygradecalcs.title}</p>
             <p>Grade: {props.mygradecalcs.grade}%</p>
