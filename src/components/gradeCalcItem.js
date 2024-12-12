@@ -66,7 +66,7 @@ const GradeItem = (props) => {
               top: "4%",
               backgroundColor: "rgba(128, 128, 128, 0.8)",
               right: "15px",
-              border: "none",
+              border: "1px solid black",
               borderRadius: "20px",
               fontSize: "10px", // Small font
               padding: "3px 8px", // Compact size

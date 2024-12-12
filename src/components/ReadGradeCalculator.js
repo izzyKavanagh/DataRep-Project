@@ -42,7 +42,7 @@ const ReadGradeCalculator = () => {
         </div>
 
         <div style={styles.gradeContainer}>
-            <h1 style={{color:'black'}}>Saved Grades</h1>
+            <h1 style={styles.gradeContainerTitle}>Saved Grades</h1>
             <Grades myGrades={gradecalcs} OnDelete={RefreshGrades} />
         </div>
     </div>
@@ -86,6 +86,14 @@ const styles = {
         marginBottom: "20px",
         color: "rgb(50, 168, 82)",
     },
+    gradeContainerTitle:{
+        backgroundColor: 'white',
+        color: 'black',
+        padding: '10px 20px',
+        borderRadius: '50px',
+        border: '2px solid black',
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)", 
+    }
 }
 
 export default ReadGradeCalculator;
