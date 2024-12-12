@@ -34,9 +34,9 @@ const ReadGradeCalculator = () => {
     };
 
   return (
-    <div style={styles.pageContainer}>
+    <div className="background text" style={styles.pageContainer}>
         {/* Create Grade Calculator form */}
-        <div style={styles.formContainer}>
+        <div  style={styles.formContainer}>
             <h1 style={styles.formTitle} >Grade Calculator</h1>
             <CreateGradeCalc addGrade={addGrade}/>
         </div>
@@ -56,7 +56,6 @@ const styles = {
       justifyContent: "space-between",
       alignItems: "flex-start",
       minHeight: "100vh", 
-      backgroundColor: "#f8f9fa", 
       padding: "30px",
     },
     formContainer: {

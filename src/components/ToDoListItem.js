@@ -85,22 +85,22 @@ const TodoItem = (props) => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%',}}>
             {/* Single card containing all tasks */}
-            <Card  style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
-                <Card.Header style={{backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
+            <Card style={{ width: 'auto', maxWidth: '500px', minWidth: '300px' }}>
+                <Card.Header className='card-header text'>
                     <h1>To-Do List</h1>
                     <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '10px', 
                         color: 'black', border: '1px solid black', borderRadius: '40px' }}>
                         {editing ? 'Save' : 'Edit'}
                     </Button>
                 </Card.Header>
-                <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center card-background">
                     <ul style={{ listStyleType: 'none', padding: "20px", margin: 0 }}>
                         {todos.map((todo) => (
-                            <li key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
+                            <li className='text' key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
                              borderRadius: '20px'}}>
                                 {/* Edit Button (displayed in Edit Mode) */}
                                 {editing && (
-                                    <button onClick={() => {}} style={{ marginRight: '10px', height: '25px', width: '30px', backgroundColor: 'transparent', 
+                                    <button onClick={() => {}} style={{ marginRight: '10px', height: '25px', width: '30px', backgroundColor: 'white', 
                                         border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', fontSize: "11px" }} >
                                         edit
                                     </button>
@@ -125,8 +125,8 @@ const TodoItem = (props) => {
                         ))}
                     </ul>
                 </Card.Body>
-                <Card.Footer style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
-                    height: '50px', backgroundColor: 'rgba(230, 204, 225, 0.8)'}}>
+                <Card.Footer className='card-header' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
+                    height: '50px'}}>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                         <Fab size="small" color="secondary" aria-label="add" sx={{ boxShadow: 'none' }} onClick={handleOpenDialog}>
                             <AddIcon/>

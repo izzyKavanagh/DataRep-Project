@@ -16,7 +16,7 @@ const ReadToDoList = () => {
     }, []);
 
     return (
-        <div>
+        <div className='background text'>
             <h2>To-Do List</h2>
             {/* Display the to-do list */}
             <ToDos todos={todos} />

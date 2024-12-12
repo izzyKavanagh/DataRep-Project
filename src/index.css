@@ -1,3 +1,10 @@
+:root {
+  --bg-dark: rgb(24, 24, 24);
+  --text-light: white;
+  --card-bg: rgb(70, 70, 70);
+  --card-header-bg: rgb(9, 88, 9);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,6 +15,23 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.background {
+  background-color: var(--bg-dark);
+}
+
+.text {
+  color: var(--text-light);
+}
+
+.card-background {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: var(--card-header-bg);
+}
+
