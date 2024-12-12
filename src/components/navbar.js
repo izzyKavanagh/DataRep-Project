@@ -1,22 +1,18 @@
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
+import "./Navbar.css";
 
 const NavigationBar = () => {
   return (
     //create bootsrap navbar component 
-    <Navbar bg="dark" data-bs-theme="dark">
-      <Container>
-        <Navbar.Brand href="/">Navbar</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/home">MainPage</Nav.Link>
-          <Nav.Link href="/todolist">To-Do List</Nav.Link>
-          <Nav.Link href="/notes">Notes</Nav.Link>
-          <Nav.Link href="/gradecalcs">Grade Calculator</Nav.Link>
-          {/*<Nav.Link href="/createModule">Grade Tracker</Nav.Link> */}
-          {/*<Nav.Link href="/read">GradeTracker</Nav.Link> */}
-          {/* <Nav.Link href="/timetables">Timetables</Nav.Link> */}
-          {/*<Nav.Link href="/createTimetable">Create Timetables</Nav.Link>*/}
+    <Navbar className='navbar'>
+      <Container >
+        <Nav className="nav-links">
+          <li><Nav.Link className='navbar-links' href="/home">MainPage</Nav.Link></li>
+          <li><Nav.Link href="/todolist">To-Do List</Nav.Link></li>
+          <li><Nav.Link href="/notes">Notes</Nav.Link></li>
+          <li><Nav.Link href="/gradecalcs">Grade Calculator</Nav.Link></li>
         </Nav>
       </Container>
     </Navbar>
