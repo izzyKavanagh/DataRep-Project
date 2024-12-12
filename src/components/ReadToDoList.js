@@ -16,11 +16,9 @@ const ReadToDoList = () => {
     }, []);
 
     return (
-        <div className='background text'>
-            <h2>To-Do List</h2>
+        <div>
             {/* Display the to-do list */}
             <ToDos todos={todos} />
-            {/* Form to add a new to-do */}
         </div>
     );
 };
