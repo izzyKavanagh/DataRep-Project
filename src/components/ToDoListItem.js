@@ -146,7 +146,7 @@ const TodoItem = (props) => {
                                 {/* Checkbox for each task */}
                                 <input type="checkbox" checked={todo.completed}
                                     onChange={() => handleCheckboxChange(todo._id, todo.completed)}
-                                    style={{ marginRight: '10px'}}
+                                    style={{ marginRight: '10px', accentColor: 'green'}}
                                 />
                                 {/* Task text with dynamic strikethrough */}
                                 <span style={{textDecoration: todo.completed ? 'line-through' : 'none',}}>

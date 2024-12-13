@@ -48,7 +48,9 @@ const EditNote = () => {
 
     return (
     <Container>
-        <h1>Edit Note</h1>
+        <h1 lassName='text' style={{margin: '20px', width: '500px', height: 'auto', backgroundColor: 'white',
+            color: 'black',padding: '10px',borderRadius: '50px',border: '2px solid black', textAlign: 'center',
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)", }}>Edit Note</h1>
         <Row className="mb-4">
         <Col>
             <Form.Control
@@ -72,7 +74,7 @@ const EditNote = () => {
 
         <Row>
         <Col>
-            <Button onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' }}> Save Note</Button>
+            <Button className='add-button' onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' , marginTop: '20px', marginBottom: '40px'}}> Save Note</Button>
         </Col>
         </Row>
     </Container>

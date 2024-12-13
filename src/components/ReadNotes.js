@@ -53,8 +53,8 @@ const ReadNotes = () => {
           </Col>
         </Row>
           {/* Create New Note Button */}
-          <Link to="/createNote" className="btn btn-primary add-button card-formatting" style={{ padding: '10px 15px', fontSize: '16px', 
-            marginBottom: '20px', borderRadius: '50px', display: 'inline-block' }}>
+          <Link to="/createNote" className="add-button card-formatting" style={{ padding: '10px 15px', fontSize: '16px', 
+            marginBottom: '20px', borderRadius: '50px', display: 'inline-block', color: 'white', textDecoration: 'none' }}>
               New Note +
           </Link>
         {/* Display the notes */}

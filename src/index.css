@@ -87,6 +87,7 @@ code {
 }
 
 .modal-footer .btn-primary {
-  background-color: var(--add-button-bg); /* Primary theme color */
+  background-color: var(--add-button-bg); 
   border: none;
 }
+
