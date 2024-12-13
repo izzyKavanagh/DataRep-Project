@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card } from 'react-bootstrap';
-import { Fab, Box, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { Card, Modal, Button, Form } from 'react-bootstrap';
+
+import { Fab, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const TodoItem = (props) => {
     // Local state to manage the task list
     const [todos, setTodos] = useState(props.todos);
     const [newTask, setNewTask] = useState('');
-    const [openDialog, setOpenDialog] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(false);
 
     // Sync todos state when props.todos changes
@@ -52,14 +53,6 @@ const TodoItem = (props) => {
             });
     };
 
-    const handleOpenDialog = () => {
-        setOpenDialog(true);
-    };
-
-    const handleCloseDialog = () => {
-        setOpenDialog(false);
-    };
-
     const handleAddTask = () => {
         //check if the task string has whitespace characters at beginning/end 
         if (newTask.trim() === '') {
@@ -75,7 +68,7 @@ const TodoItem = (props) => {
         .then((res) => {
             setTodos((prevTodos) => [res.data.todo, ...prevTodos]); // Add new task to the beginning
             setNewTask(''); // Clear the input
-            handleCloseDialog(); // Close the dialog
+            setShowModal(false); // Close the dialog
         })
         .catch((err) => {
             console.error("Error adding task:", err);
@@ -143,14 +136,7 @@ const TodoItem = (props) => {
                         {todos.map((todo) => (
                             <li className='text' key={todo._id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center',
                              borderRadius: '20px'}}>
-                                {/* Edit Button (displayed in Edit Mode) */}
-                                {editing && (
-                                    <button onClick={() => {}} style={{ marginRight: '10px', height: '25px', width: '30px', backgroundColor: 'white', boxShadow: '2px 2px 2px rgb(0, 0, 0, 0.7)',
-                                        border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', fontSize: "11px" }} >
-                                        Edit
-                                    </button>
-                                )}
-                                 {/* Edit Button (displayed in Edit Mode) */}
+                                 {/* delete Button (displayed in Edit Mode) */}
                                 {editing && (
                                 <button onClick={() => handleDeleteTask(todo._id)} style={{ marginRight: '10px', height: '25px', width: '25px', backgroundColor: 'rgba(125, 2, 2, 0.69)', 
                                 border: '1px solid black', alignItems: 'center', borderRadius: '10px', display: 'flex', justifyContent: 'center', boxShadow: '2px 2px 2px rgb(0, 0, 0, 0.7)'}}>
@@ -173,36 +159,40 @@ const TodoItem = (props) => {
                 <Card.Footer className='card-header' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
                     height: '50px'}}>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" aria-label="add" sx={{ boxShadow: '3px 3px 3px rgb(0, 0, 0, 1)', backgroundColor: 'rgb(50, 168, 82)' }} onClick={handleOpenDialog}>
+                        <Fab size="small" aria-label="add" sx={{ boxShadow: '3px 3px 3px rgb(0, 0, 0, 1)', backgroundColor: 'rgb(50, 168, 82)' }} onClick={() => setShowModal(true)}>
                             <AddIcon/>
                         </Fab>
                     </Box>
                 </Card.Footer>
             </Card>
 
-             {/* Dialog for adding new task */}
-            <Dialog open={openDialog} onClose={handleCloseDialog}>
-                <DialogTitle>Add New Task</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        label="Task"
-                        type="text"
-                        fullWidth
-                        value={newTask}
-                        onChange={(e) => setNewTask(e.target.value)}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
+             {/* Modal for adding new task */}
+             <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add New Task</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group controlId="formTask">
+                            <Form.Label>Task</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter task"
+                                value={newTask}
+                                onChange={(e) => setNewTask(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
                         Cancel
                     </Button>
-                    <Button onClick={handleAddTask} color="primary">
+                    <Button variant="primary" onClick={handleAddTask}>
                         Add Task
                     </Button>
-                </DialogActions>
-            </Dialog>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };
