@@ -1,18 +1,16 @@
-//import components
 import Notes from "./Notes";
-// Import React hooks
 import { useEffect, useState } from "react"; 
-//import axios
 import axios from "axios";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-// Define the Read component
+
 const ReadNotes = () => {
-  const [notes, setNotes] = useState([]); //react hook used to manage the state of the movies variable
+  // State to manage list of notes and search query
+  const [notes, setNotes] = useState([]); 
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Reload notes after a deletion
+  // reload notes after a deletion by fetching from database
   const ReloadNotes = () => {
     axios.get("http://localhost:4000/api/notes")
       .then((response) => {
@@ -23,21 +21,20 @@ const ReadNotes = () => {
       });
   };
 
-  //react hook that fetches data
+  //react hook that fetches data when component mounts
   useEffect(()=>{
-    //Make axios (library that supports HTTP requests) GET request (HTTP request) to the provided URL to retrieve movie data
     axios.get('http://localhost:4000/api/notes')
     .then((response)=>{ 
-      console.log(response.data);//log response to console
-      setNotes(response.data.notes); // Update state with the movie data received from API
+      console.log(response.data);
+      setNotes(response.data.notes); 
     })
-    .catch((error)=>{ // Handle any errors that occur during the API request
-      console.log(error); //log them to console
+    .catch((error)=>{
+      console.log(error); 
     });
     ReloadNotes();
-  },[]);
+  },[]); //effect only runs once when component mounts
 
-  // Filter the notes based on the search query
+  // Filter the notes based on the search query (title)
   const filteredNotes = notes.filter((note) =>
     note.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -57,7 +54,7 @@ const ReadNotes = () => {
             marginBottom: '20px', borderRadius: '50px', display: 'inline-block', color: 'white', textDecoration: 'none' }}>
               New Note +
           </Link>
-        {/* Display the notes */}
+        {/* Pass notes to the Notes component & display */}
         <Row>
           <Notes myNotes={filteredNotes} ReloadData={ReloadNotes}/>
         </Row>
@@ -66,4 +63,4 @@ const ReadNotes = () => {
   );
 };
   
-export default ReadNotes; //export components
+export default ReadNotes;

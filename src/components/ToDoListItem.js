@@ -6,45 +6,48 @@ import { Fab, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const TodoItem = (props) => {
-    // Local state to manage the task list
+    // Local state hooks to manage tasks, input, modal, and edit mode
     const [todos, setTodos] = useState(props.todos);
     const [newTask, setNewTask] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(false);
 
-    // Sync todos state when props.todos changes
+    // Sync todos state when todos change
     useEffect(() => {
-        //sort tasks when page is loaded/reloaded
-        const sortedTodos = [...props.todos].sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
+        //sort tasks based on completion status when page is loaded/reloaded
+        const sortedTodos = [...props.todos].sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1); 
         setTodos(sortedTodos);
         console.log("Tasks updated:", props.todos);
-    }, [props.todos]);
+    }, [props.todos]); // effect runs when todos change
 
 
+    // handles editing mode view (for removing tasks)
     const toggleEditMode = () => {
-        setEditing(!editing); // Toggle edit mode
+        setEditing(!editing);
     };
 
     //function for deleting tasks from list
     const handleDeleteTask = (id) => {
+        //deletes locally
         const updatedTodos = todos.filter((todo) => todo._id !== id);
         setTodos(updatedTodos);
     
+        //deletes in database
         axios.delete(`http://localhost:4000/api/todos/${id}`).catch((err) => console.error('Error deleting task:', err));
     };
 
+    // Handle changes to the task's completion status (checkbox click)
     const handleCheckboxChange = (id, currentStatus) => {
         // Update the local state
         const updatedTodos = todos.map((todo) =>
             todo._id === id ? { ...todo, completed: !currentStatus } : todo
         );
-        //sort the tasks based on completed status
+        //sort tasks based on completed status
         updatedTodos.sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
         setTodos(updatedTodos);
 
         // Send the updated status to the database
-        axios
-            .put(`http://localhost:4000/api/todos/${id}`, { completed: !currentStatus })
+        axios.put(`http://localhost:4000/api/todos/${id}`, { completed: !currentStatus })
             .then((res) => {
                 console.log(`Task "${id}" updated to ${!currentStatus ? 'Completed' : 'Incomplete'}`);
             })
@@ -53,22 +56,25 @@ const TodoItem = (props) => {
             });
     };
 
+    // Handle adding a new task
     const handleAddTask = () => {
-        //check if the task string has whitespace characters at beginning/end 
+        //dont add if task string has whitespace characters at beginning/end 
         if (newTask.trim() === '') {
             return;
         }
         const task = {
             task: newTask,
-            completed: false, // Set completed to false by default
+            completed: false,
         };
 
-        // Add the new task to the todo list
+        // Add the new task to database
         axios.post('http://localhost:4000/api/todos', task)
         .then((res) => {
-            setTodos((prevTodos) => [res.data.todo, ...prevTodos]); // Add new task to the beginning
-            setNewTask(''); // Clear the input
-            setShowModal(false); // Close the dialog
+            // Add new task to the beginning
+            setTodos((prevTodos) => [res.data.todo, ...prevTodos]); 
+            // Clear the input & close modal
+            setNewTask(''); 
+            setShowModal(false); 
         })
         .catch((err) => {
             console.error("Error adding task:", err);
@@ -78,7 +84,7 @@ const TodoItem = (props) => {
     return (
             
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: '100vh', padding: '20px' }}>
-            {/* Left container */}
+            {/* Left container with generic information about todo list */}
             <div style={{
                 flex: 1,
                 marginRight: '150px',
@@ -94,7 +100,7 @@ const TodoItem = (props) => {
                 top: 0,
                 boxShadow: '6px 6px 6px rgb(0,0,0,1)',
                 display: 'flex',
-                flexDirection: 'column', // Stack the content vertically
+                flexDirection: 'column', 
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
@@ -126,6 +132,7 @@ const TodoItem = (props) => {
             <Card className='card-formatting' style={{ width: 'auto', maxWidth: '500px', minWidth: '300px', marginRight:'200px' }}>
                 <Card.Header className='card-header text'>
                     <h1>To-Do List</h1>
+                    {/* edit button to enter edit mode */}
                     <Button onClick={toggleEditMode} style={{ position: 'absolute', top: '10px', right: '10px', padding: '2px 6px', fontSize: '10px', 
                         color: 'black', border: '1px solid black', borderRadius: '40px', backgroundColor:'grey', boxShadow: '2px 2px 2px rgb(0, 0, 0, 0.7)' }}>
                         {editing ? 'Save' : 'Edit'}
@@ -158,6 +165,7 @@ const TodoItem = (props) => {
                 </Card.Body>
                 <Card.Footer className='card-header' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', 
                     height: '50px'}}>
+                    {/* Fast action button for adding a new task */}
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                         <Fab size="small" aria-label="add" sx={{ boxShadow: '3px 3px 3px rgb(0, 0, 0, 1)', backgroundColor: 'rgb(50, 168, 82)' }} onClick={() => setShowModal(true)}>
                             <AddIcon/>
@@ -173,6 +181,7 @@ const TodoItem = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
+                        {/* form for entering new task */}
                         <Form.Group controlId="formTask">
                             <Form.Label>Task</Form.Label>
                             <Form.Control
@@ -185,6 +194,7 @@ const TodoItem = (props) => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    {/* cancel and add buttons */}
                     <Button variant="secondary" onClick={() => setShowModal(false)}>
                         Cancel
                     </Button>

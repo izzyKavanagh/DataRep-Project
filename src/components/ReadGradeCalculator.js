@@ -4,15 +4,17 @@ import Grades from "./GradeCalc";
 import CreateGradeCalc from "./CreateGradeCalc";
 
 const ReadGradeCalculator = () => {
-    const [gradecalcs, setGrades] = useState([]); // State to store grades
+    // State to store grades
+    const [gradecalcs, setGrades] = useState([]); 
 
     // Function to fetch the updated grades
     const RefreshGrades = () => {
         axios.get("http://localhost:4000/api/gradecalcs")
         .then((response) => setGrades(response.data.gradecalcs))
-        .catch((error) => console.error("Error refreshing grades:", error));
+        .catch((error) => console.error("Error refreshing grades:", error)); // Set state with fetched gradecalcs
     };
-  // Fetch grades from the server
+
+    // Function to fetch grades on initial render
     const fetchGrades = () => {
         axios.get("http://localhost:4000/api/gradecalcs")
         .then((response) => {
@@ -24,25 +26,30 @@ const ReadGradeCalculator = () => {
         });
     };
 
+    //hook that runs on component mount
     useEffect(() => {
         fetchGrades();
-        RefreshGrades();
+        RefreshGrades(); // Refresh grades after creating/deleting
     }, []);
 
+     //add new grade & re-fetch grades after adding new grade
     const addGrade = (newGrade) => {
-        fetchGrades(); // Re-fetch the grades after adding a new grade
+        fetchGrades();
     };
 
   return (
     <div style={styles.pageContainer}>
-        {/* Create Grade Calculator form */}
+        {/*Grade Calculator form */}
         <div style={styles.formContainer}>
             <h1 style={styles.formTitle} >Grade Calculator</h1>
+            {/* Pass addGrade function create component */}
             <CreateGradeCalc addGrade={addGrade}/>
         </div>
 
+        {/* display saved Grades */}
         <div style={styles.gradeContainer}>
             <h1 style={styles.gradeContainerTitle}>Saved Grades</h1>
+            {/* Pass grades data to Grades component */}
             <Grades myGrades={gradecalcs} OnDelete={RefreshGrades} />
         </div>
     </div>
@@ -50,6 +57,7 @@ const ReadGradeCalculator = () => {
 
 };
 
+// Styles for the page layout and elements
 const styles = {
     pageContainer: {
       display: "flex", 

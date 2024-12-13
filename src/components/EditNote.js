@@ -5,17 +5,21 @@ import axios from 'axios';
 
 const EditNote = () => {
 
-    const { id } = useParams(); // Getting the note id from the URL
+    // Getting the note id from the URL
+    const { id } = useParams(); 
+
+    // State variables to manage the note's title, creation date, and body content
     const [title, setNoteTitle] = useState('');
     const [dateCreated, setDateCreated] = useState('');
     const [noteBody, setNoteBody] = useState('');
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook for navigation after updating the note
 
-    // Fetch the note data 
+    // Fetch the note data when the component mounts
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/notes/${id}`)
+        axios.get(`http://localhost:4000/api/notes/${id}`) 
         .then(response => {
             const { title, dateCreated, noteBody } = response.data; 
+            // Set the note data to the state variables
             setNoteTitle(title);
             setDateCreated(dateCreated);
             setNoteBody(noteBody);
@@ -24,16 +28,18 @@ const EditNote = () => {
         .catch(error => {
             console.error('There was an error fetching the note!', error);
         });
-    }, [id]);
+    }, [id]); // Dependency array ensures this runs only when the id changes
 
+    // Function to handle saving the edited note
     const handleSaveNote = () => {
         const updatedNote = {
             title: title,
             noteBody: noteBody,
             dateCreated: dateCreated, // Keep the original creation date
-            dateEdited: new Date()
+            dateEdited: new Date() // Set the current date as the "edited" date
         };
         
+        // Send the updated note to the backend via a PUT request
         axios.put(`http://localhost:4000/api/notes/${id}`, updatedNote)
         .then(() => {
             console.log('Note updated successfully');
@@ -42,15 +48,21 @@ const EditNote = () => {
         .catch((error) => console.log(error));
     };
 
+    // Function to handle changes in the note body
     const handleBodyChange = (event) => {
         setNoteBody(event.target.innerHTML);  // Update state with the inner HTML
     };
 
     return (
     <Container>
+        {/* Heading for the edit note page */}
         <h1 lassName='text' style={{margin: '20px', width: '500px', height: 'auto', backgroundColor: 'white',
             color: 'black',padding: '10px',borderRadius: '50px',border: '2px solid black', textAlign: 'center',
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)", }}>Edit Note</h1>
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)", }}>
+            Edit Note
+        </h1>
+
+        {/* Title input field */}
         <Row className="mb-4">
         <Col>
             <Form.Control
@@ -63,15 +75,16 @@ const EditNote = () => {
         </Col>
         </Row>
 
+        {/* Editable area for the note body */}
         <Row className="mb-4">
         <Col>
-            {/* Editable area for the note body */}
             <div contentEditable
                 style={{border: '1px solid #ccc', padding: '10px', minHeight: '200px', backgroundColor: '#f9f9f9',}}
                 onInput={handleBodyChange} dangerouslySetInnerHTML={{ __html: noteBody }}/>
         </Col>
         </Row>
 
+        {/* Save button to trigger the update action */}
         <Row>
         <Col>
             <Button className='add-button' onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' , marginTop: '20px', marginBottom: '40px'}}> Save Note</Button>

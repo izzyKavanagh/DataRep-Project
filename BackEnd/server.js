@@ -1,11 +1,12 @@
 const express = require('express');
-
 const app = express();
 const port = 4000;
 
+// Enable Cross-Origin Resource Sharing (CORS)
 const cors = require('cors');
 app.use(cors());
 
+// Set CORS headers for all incoming requests
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -13,29 +14,32 @@ app.use(function(req, res, next) {
     next();
 });
 
+// Middleware to parse URL-encoded and JSON request bodies
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Connect to MongoDB using Mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.lledy.mongodb.net/ProjDB');
 
+// Define and create the schema for the Todo model
 const todoSchema = new mongoose.Schema({
     task: String, 
     completed: Boolean,
 });
-
 const TodoModel = mongoose.model('Todo', todoSchema);
 
+// Define and create the schema for the Note model
 const noteSchema = new mongoose.Schema({
     title: String,       
     dateCreated: Date,
     dateEdited: Date,
     noteBody: String      
 });
-
 const NoteModel = mongoose.model('Note', noteSchema);
 
+// Define and create the schema for the GradeCalc model
 const gradeCalcSchema = new mongoose.Schema({
     module: String,
     title : String,
@@ -151,6 +155,7 @@ app.delete('/api/gradecalcs/:id', async (req, res) => {
     res.json({ message: 'Grade Calculation entry deleted successfully' });
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

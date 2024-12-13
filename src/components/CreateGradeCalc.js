@@ -15,6 +15,7 @@ const CreateGradeCalc = ({ addGrade }) => {
         return (grade * weighting) / 100;
     };
 
+    // Handle form submission, calculate result, and make POST request to the backend
     const handleSubmit = (e) => {
         e.preventDefault();
         const result = calculateResult(grade, weighting);
@@ -27,7 +28,8 @@ const CreateGradeCalc = ({ addGrade }) => {
         .then((res) => {console.log(res.data); 
             addGrade(res.data);
             calculateResult(grade, weighting);
-            //reset form fields
+
+            // Reset form fields after submission
             setModule('');
             setTitle('');
             setGrade('');
@@ -37,6 +39,7 @@ const CreateGradeCalc = ({ addGrade }) => {
     };
   
     return (
+        //card that displays a form to get input from the user when using grade calculator
         <Card className='card-formatting' style={{ width: "300px" }}>
             <Card.Header className="card-header" style={{ color: "white", textAlign: "center", fontWeight: "bold" }} >
                 Calculate Grade Contribution to Module Total
@@ -49,7 +52,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <label style={{ marginBottom: "5px"}}>Enter Module: </label>
                         <input type="text" placeholder="..."
                             className="form-control search-bar input-box"
-                            value={module} //input bound to title state
+                            value={module} 
                             onChange={(e) => { setModule(e.target.value) }}
                             required />
                     </div>
@@ -58,7 +61,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <label style={{ marginBottom: "5px"}}>Enter Title: </label>
                         <input type="text" placeholder="..."
                             className="form-control search-bar input-box"
-                            value={title}  //input bound to year state
+                            value={title} 
                             onChange={(e) => { setTitle(e.target.value) }}
                         />
                     </div>
@@ -68,7 +71,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                             <input type="number" placeholder="..."
                                 className="form-control search-bar input-box"
-                                value={grade}  //input bound to poster state
+                                value={grade} 
                                 onChange={(e) => { setGrade(e.target.value) }}
                                 style={{ width: "70px" }}
                             />
@@ -81,7 +84,7 @@ const CreateGradeCalc = ({ addGrade }) => {
                         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                             <input type="Number" placeholder="..."
                                 className="form-control search-bar input-box"
-                                value={weighting}  //input bound to poster state
+                                value={weighting} 
                                 onChange={(e) => { setWeighting(e.target.value) }}
                                 style={{ width: "70px" }}
                             />

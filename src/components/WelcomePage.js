@@ -1,16 +1,18 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-// HomePage component
 const HomePage = () => {
   return (
+    //Page container: Two-column layout 
     <div>
       <div style={styles.title}>
         <h1>My Study App</h1>
       </div>
+    
       <div style={styles.pageContainer}>
-        {/* Left Side */}
+        {/* Left Side*/}
         <div style={styles.leftSide}>
+          {/*  Welcome section */}
           <div style={styles.welcomeContainer}>
             <h1 style={styles.welcomeTitle}>Welcome to Your Study Hub</h1>
             <p style={styles.welcomeText}>This is your one-stop destination for all things study-related. 
@@ -20,6 +22,7 @@ const HomePage = () => {
               we've got you covered. Let's make studying smarter, more efficient, and less stressful!"
             </p>
           </div>
+          {/*  Promotion section */}
           <div style={styles.promotionContainer}>
             <div style={styles.imageContainer}>
               <img 
@@ -39,14 +42,16 @@ const HomePage = () => {
 
         {/* Right Side */}
         <div style={styles.rightSide}>
+          {/* image */}
           <img 
             src="/lofi-image.jpg" 
             alt="Right side image" 
             style={styles.rightSideImage} 
           />
+          {/*card that links to notes page*/}
           <Card 
             style={styles.card} 
-            onClick={() => window.location.href = "/notes"}  // Clickable card
+            onClick={() => window.location.href = "/notes"} 
           >
             <Card.Header style={styles.cardHeader}>
               <h3 style={styles.cardTitle}>Go To Notes</h3>
@@ -54,7 +59,7 @@ const HomePage = () => {
             <Card.Body>
             <div style={styles.cardContent}>
                 <img 
-                  src="/books1.jpg"  // Your note-related image path
+                  src="/books1.jpg" 
                   alt="Notes Image" 
                   style={styles.cardImage} 
                 />
@@ -72,7 +77,7 @@ const HomePage = () => {
   );
 };
 
-// Inline styles for the homepage
+// styles for the homepage
 const styles = {
   title:{
     backgroundColor: 'white',
@@ -111,7 +116,7 @@ const styles = {
   welcomeTitle: {
     fontSize: '2.5rem',
     fontWeight: 'bold',
-    color: '#32a852', // Green color
+    color: '#32a852', 
     marginBottom: '15px',
   },
   welcomeText: {
@@ -146,7 +151,7 @@ const styles = {
   promotionTitle: {
     fontSize: '1.5rem',
     fontWeight: '600',
-    color: '#32a852', // Green color
+    color: '#32a852', 
     marginBottom: '10px',
   },
   promotionDescription: {
@@ -177,7 +182,7 @@ const styles = {
     cursor: 'pointer',
   },
   cardHeader: {
-    backgroundColor: '#32a852', // Green header background
+    backgroundColor: '#32a852', 
     color: 'white',
     padding: '10px',
     borderTopLeftRadius: '10px',
@@ -204,7 +209,7 @@ const styles = {
   },
   cardContent: {
     display: 'flex',
-    alignItems: 'center', // Aligns the image and text horizontally
+    alignItems: 'center', 
   },
   cardText: {
     flex: 1,
@@ -212,5 +217,5 @@ const styles = {
   },
 };
 
-// Export the component
+
 export default HomePage;

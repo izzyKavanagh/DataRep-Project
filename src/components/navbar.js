@@ -5,9 +5,10 @@ import "../Navbar.css";
 
 const NavigationBar = () => {
   return (
-    //create bootsrap navbar component 
+    //navbar component 
     <Navbar className='navbar'>
       <Container >
+        {/*navbar links to pages*/}
         <Nav className="nav-links">
           <li><Nav.Link className='navbar-links' href="/">MainPage</Nav.Link></li>
           <li><Nav.Link href="/todolist">To-Do List</Nav.Link></li>
