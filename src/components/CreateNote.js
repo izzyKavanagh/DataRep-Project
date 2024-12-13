@@ -14,7 +14,7 @@ const CreateNote = () => {
     const navigate = useNavigate();
   
     useEffect(() => {
-        const currentDate = new Date().toLocaleDateString("en-GB"); // Format as DD/MM/YYYY
+        const currentDate = new Date(); 
         setDateCreated(currentDate);
         setDateEdited(currentDate); // Initially set dateEdited to be same as dateCreated
     }, []);
