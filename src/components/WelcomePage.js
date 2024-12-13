@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 // HomePage component
 const HomePage = () => {
@@ -12,9 +12,12 @@ const HomePage = () => {
         {/* Left Side */}
         <div style={styles.leftSide}>
           <div style={styles.welcomeContainer}>
-            <h1 style={styles.welcomeTitle}>Welcome to Your Productivity Hub</h1>
-            <p style={styles.welcomeText}>Organize your tasks, stay focused, and achieve your goals with ease.
-            To make the Notes card clickable and display the card body with an image, along with the header displaying "Go To Notes", you'll need to make a few adjustments:
+            <h1 style={styles.welcomeTitle}>Welcome to Your Study Hub</h1>
+            <p style={styles.welcomeText}>This is your one-stop destination for all things study-related. 
+              Stay on top of your tasks with our To-Do List, keep all your notes organized and accessible, 
+              and effortlessly calculate your grades to track your academic progress. 
+              Whether you're preparing for exams, managing assignments, or just looking to improve your productivity, 
+              we've got you covered. Let's make studying smarter, more efficient, and less stressful!"
             </p>
           </div>
           <div style={styles.promotionContainer}>
@@ -103,7 +106,6 @@ const styles = {
     backgroundColor: '#2a2a2a',
     borderRadius: '10px',
     border: '1.5px solid white',
-    borderRadius: '10px',
     boxShadow: "6px 6px 6px rgba(0, 0, 0, 0.8)"
   },
   welcomeTitle: {
@@ -164,7 +166,6 @@ const styles = {
     borderRadius: '10px',
     marginBottom: '20px',
     border: '1.5px solid white',
-    borderRadius: '10px',
     boxShadow: "6px 6px 6px rgba(0, 0, 0, 0.8)"
   },
   card: {
