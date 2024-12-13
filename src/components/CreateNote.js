@@ -45,7 +45,11 @@ const CreateNote = () => {
   
     return (
         <Container>
-            <h1>Create New Note</h1>
+            <h1 className='text' style={{margin: '20px', width: '500px', height: 'auto', backgroundColor: 'white',
+                color: 'black',padding: '10px',borderRadius: '50px',border: '2px solid black', textAlign: 'center',
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.8)", }}>
+                Create New Note
+            </h1>
             <Row className="mb-4">
                 <Col>
                     <Form.Control
@@ -77,7 +81,7 @@ const CreateNote = () => {
             <Row>
                 <Col>
                     {/* Save Button */}
-                    <button onClick={handleSaveNote} style={{ borderRadius: '20px', padding: '10px 20px' }}>Save Note</button>
+                    <button onClick={handleSaveNote} className="add-button" style={{ borderRadius: '20px', border: '1.5px solid black', padding: '10px 20px' }}>Save Note</button>
                 </Col>
             </Row>
         </Container>
