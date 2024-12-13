@@ -14,7 +14,7 @@ function App() {
     <Router>
       <NavigationBar />
       <Routes>
-        <Route path="/home" element={<WelcomePage />} />
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/todolist" element={<ReadToDoList />} />
         <Route path="/notes" element={<ReadNotes />} />
         <Route path="/createNote" element={<CreateNote />} />

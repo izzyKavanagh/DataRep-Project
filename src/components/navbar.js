@@ -9,7 +9,7 @@ const NavigationBar = () => {
     <Navbar className='navbar'>
       <Container >
         <Nav className="nav-links">
-          <li><Nav.Link className='navbar-links' href="/home">MainPage</Nav.Link></li>
+          <li><Nav.Link className='navbar-links' href="/">MainPage</Nav.Link></li>
           <li><Nav.Link href="/todolist">To-Do List</Nav.Link></li>
           <li><Nav.Link href="/notes">Notes</Nav.Link></li>
           <li><Nav.Link href="/gradecalcs">Grade Calculator</Nav.Link></li>
