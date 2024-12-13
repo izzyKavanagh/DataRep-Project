@@ -27,7 +27,7 @@ const HomePage = () => {
             <div style={styles.imageContainer}>
               <img 
                 src="/studying.jpg" 
-                alt="App promotional image" 
+                alt="Aesthetic Art" 
                 style={styles.promotionImage} 
               />
             </div>
@@ -45,7 +45,7 @@ const HomePage = () => {
           {/* image */}
           <img 
             src="/lofi-image.jpg" 
-            alt="Right side image" 
+            alt="Aesthetic Art" 
             style={styles.rightSideImage} 
           />
           {/*card that links to notes page*/}
@@ -60,7 +60,7 @@ const HomePage = () => {
             <div style={styles.cardContent}>
                 <img 
                   src="/books1.jpg" 
-                  alt="Notes Image" 
+                  alt="Notes" 
                   style={styles.cardImage} 
                 />
                 <div style={styles.cardText}>
