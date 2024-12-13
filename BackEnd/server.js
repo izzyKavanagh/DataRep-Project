@@ -19,25 +19,10 @@ app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.lledy.mongodb.net/ProjDB');
-const moduleSchema = new mongoose.Schema({
-    title: String,
-    exam1: Number, 
-    exam2: Number
-});
- 
-const moduleModel = new mongoose.model('Module', moduleSchema);
-
-const timetableSchema = new mongoose.Schema({
-  subject: String,
-  startTime: String,
-  endTime: String
-});
-
-const TimetableModel = mongoose.model('Timetable', timetableSchema);
 
 const todoSchema = new mongoose.Schema({
-    task: String,       // The description of the to-do task
-    completed: Boolean, // Boolean to track if the task is completed
+    task: String, 
+    completed: Boolean,
 });
 
 const TodoModel = mongoose.model('Todo', todoSchema);
@@ -60,59 +45,6 @@ const gradeCalcSchema = new mongoose.Schema({
 });
 
 const GradeCalcModel = mongoose.model('GradeCalc', gradeCalcSchema);
-app.get('/api/modules', async(req, res) => {
-    const modules = await moduleModel.find({});
-    res.json({modules});
-});
-
-app.get('/api/modules/:id', async (req, res) => {
-    // Fetch a module by its ID from the database
-    const module = await moduleModel.findById(req.params.id);
-    console.log(module);
-    res.send(module); // Send the movie details as a response
-});
-
-app.post('/api/modules', async(req,res)=>{
-    console.log(req.body) // Log the title from the request body to the console
-
-    // Extract movie details from the request body
-    const { title,exam1,exam2 } = req.body;
-
-    // Create a new movie document using the extracted details
-    const newModule = new moduleModel({ title,exam1,exam2 });
-    // Save the new movie to the database
-    await newModule.save();
-
-    // Respond with a success message and the created movie
-    res.status(201).json({ message: 'Module created successfully', module: newModule }); // Send a confirmation response to the client
-})
-
-app.get('/api/timetables', async(req, res) => {
-    const timetables = await TimetableModel.find({});
-    res.json({timetables});
-});
-
-app.get('/api/timetables/:id', async (req, res) => {
-    // Fetch a module by its ID from the database
-    const timetable = await TimetableModel.findById(req.params.id);
-    console.log(timetable);
-    res.send(timetable); // Send the movie details as a response
-});
-
-app.post('/api/timetables', async(req,res)=>{
-    console.log(req.body) // Log the title from the request body to the console
-
-    // Extract movie details from the request body
-    const { subject, startTime, endTime } = req.body;
-
-    // Create a new movie document using the extracted details
-    const newTimetable = new TimetableModel({ subject, startTime, endTime });
-    // Save the new movie to the database
-    await newTimetable.save();
-
-    // Respond with a success message and the created movie
-    res.status(201).json({ message: 'Timetable created successfully', timetable: newTimetable }); // Send a confirmation response to the client
-})
 
 // Fetch all to-do items
 app.get('/api/todos', async (req, res) => {
@@ -129,7 +61,7 @@ app.get('/api/todos/:id', async (req, res) => {
 // Create a new to-do item
 app.post('/api/todos', async (req, res) => {
     const { task, completed } = req.body;
-    const newTodo = new TodoModel({ task, completed: completed || false }); // Default completed to false
+    const newTodo = new TodoModel({ task, completed: completed || false });
     await newTodo.save();
     res.status(201).json({ message: 'To-Do item created successfully', todo: newTodo });
 });
